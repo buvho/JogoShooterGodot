@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://ccnqp2381kbap"]
+
+[ext_resource type="PackedScene" uid="uid://piag05lbnleh" path="res://Components/BulletComponent.tscn" id="1_3biqk"]
+[ext_resource type="Texture2D" uid="uid://dng7lu16a27ov" path="res://Sprites/balas/Bala.png" id="2_e7eiw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w0a4t"]
+atlas = ExtResource("2_e7eiw")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g1a3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w0a4t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbyxx"]
+radius = 2.0
+height = 5.47222
+
+[node name="HitBox" type="Area2D"]
+scale = Vector2(1.7, 1.7)
+collision_layer = 2
+collision_mask = 20
+
+[node name="BulletComponet" parent="." instance=ExtResource("1_3biqk")]
+scale = Vector2(6, 6)
+speed = 1400
+damage = 1.0
+knock = 50.0
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, 0)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_g1a3d")
+
+[node name="collisão" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+rotation = 1.5708
+scale = Vector2(6, 6)
+shape = SubResource("CapsuleShape2D_bbyxx")
+
+[connection signal="body_entered" from="." to="BulletComponet" method="OnBody"]

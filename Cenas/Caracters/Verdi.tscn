@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnxb588kwkn5d"]
+
+[ext_resource type="Script" path="res://Cenas/Caracters/Verdi.cs" id="1_pfxe0"]
+[ext_resource type="Texture2D" uid="uid://bcyvnrn4oefb2" path="res://Sprites/personagens/bixo verde que anda.png" id="1_uy5fa"]
+[ext_resource type="PackedScene" uid="uid://dcvfi8hf1jk0l" path="res://Cenas/Guns/Pistol.tscn" id="2_wwj1y"]
+[ext_resource type="PackedScene" uid="uid://d06h6tjhpcfw7" path="res://Cenas/Bullets/VerdiBullet.tscn" id="5_almgp"]
+[ext_resource type="PackedScene" uid="uid://bq58tcpxqb1vh" path="res://Components/HealthComponent.tscn" id="6_d48jn"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adafm"]
+atlas = ExtResource("1_uy5fa")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyblt"]
+atlas = ExtResource("1_uy5fa")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4plye"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adafm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iyblt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xxpnf"]
+radius = 5.0
+height = 13.4286
+
+[node name="Verdi" type="CharacterBody2D"]
+scale = Vector2(1.75, 1.75)
+collision_layer = 4
+collision_mask = 23
+script = ExtResource("1_pfxe0")
+speed = 1000.0
+Weight = 0.8
+ShootRange = 250
+Range = 250
+bulletsc = ExtResource("5_almgp")
+
+[node name="Nav" type="NavigationAgent2D" parent="."]
+path_max_distance = 10000.0
+path_postprocessing = 1
+debug_path_custom_color = Color(0, 1, 0.121569, 1)
+
+[node name="RayCast" type="RayCast2D" parent="."]
+target_position = Vector2(0, 0)
+collision_mask = 16711701
+collide_with_areas = true
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4plye")
+frame_progress = 0.644146
+flip_h = true
+
+[node name="Pistol" parent="Sprite" instance=ExtResource("2_wwj1y")]
+position = Vector2(-4.28571, -1.49012e-08)
+Cooldown = 0.6
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0.142857, -0.285714)
+shape = SubResource("CapsuleShape2D_xxpnf")
+
+[node name="HealthComponent" parent="." instance=ExtResource("6_d48jn")]
+health = 3.0
+
+[connection signal="Dead" from="HealthComponent" to="." method="Dead"]

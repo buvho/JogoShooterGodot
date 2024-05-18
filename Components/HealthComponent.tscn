@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq58tcpxqb1vh"]
+
+[ext_resource type="Script" path="res://Components/HealthComponent.cs" id="1_d4fxw"]
+[ext_resource type="Texture2D" uid="uid://c77tujnaiqv7" path="res://Sprites/etc/ParticulaMorte.png" id="2_iiw1n"]
+
+[sub_resource type="Gradient" id="Gradient_eeumi"]
+offsets = PackedFloat32Array(0.509025, 0.98917)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_somfd"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.301961)
+
+[node name="HealthComponent" type="Node2D"]
+script = ExtResource("1_d4fxw")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+scale = Vector2(7, 7)
+emitting = false
+amount = 20
+one_shot = true
+explosiveness = 1.0
+draw_order = 1
+texture = ExtResource("2_iiw1n")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, -1)
+gravity = Vector2(0, -200)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+angular_velocity_min = 1.0
+angular_velocity_max = 2.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+tangential_accel_min = 1.0
+tangential_accel_max = 10.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+color_ramp = SubResource("Gradient_eeumi")
+color_initial_ramp = SubResource("Gradient_somfd")
+
+[connection signal="finished" from="Particles" to="." method="OnParticlesFinished"]

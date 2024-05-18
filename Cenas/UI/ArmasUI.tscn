@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxmlg468xltu0"]
+
+[ext_resource type="Texture2D" uid="uid://cwyu8sjv55xhm" path="res://Sprites/slot.png" id="1_fhgjd"]
+[ext_resource type="Script" path="res://Cenas/UI/ArmasUI.cs" id="1_g8wlm"]
+[ext_resource type="Texture2D" uid="uid://35lfc14s5y7l" path="res://Sprites/armas/pixil-frame-0.png" id="3_mgqjj"]
+
+[node name="ArmaUI" type="CanvasLayer"]
+script = ExtResource("1_g8wlm")
+
+[node name="armas" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -262.0
+offset_top = -177.0
+offset_right = -262.0
+offset_bottom = -177.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(5, 5)
+
+[node name="FundoA" type="TextureRect" parent="armas"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -1.39999
+offset_top = -1.00001
+offset_right = 46.6
+offset_bottom = 31.0
+texture = ExtResource("1_fhgjd")
+
+[node name="ArmaA" type="TextureRect" parent="armas"]
+texture_filter = 1
+clip_contents = true
+layout_mode = 1
+offset_left = 1.00001
+offset_top = 0.999994
+offset_right = 45.0
+offset_bottom = 29.0
+texture = ExtResource("3_mgqjj")
+expand_mode = 1
+stretch_mode = 5
+flip_h = true
+
+[node name="FundoB" type="TextureRect" parent="armas"]
+modulate = Color(0.168627, 0.203922, 0.258824, 0.772549)
+texture_filter = 1
+layout_mode = 0
+offset_left = 15.2
+offset_top = -23.0
+offset_right = 47.2
+offset_bottom = -2.0
+texture = ExtResource("1_fhgjd")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="ArmaB" type="TextureRect" parent="armas"]
+modulate = Color(0.168627, 0.203922, 0.258824, 0.772549)
+texture_filter = 1
+layout_mode = 0
+offset_left = 16.8
+offset_top = -21.6
+offset_right = 45.3
+offset_bottom = -3.10001
+expand_mode = 1
+stretch_mode = 5
+flip_h = true

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://cooy2ddueyrxf"]
+
+[ext_resource type="Texture2D" uid="uid://bnb53r6s4gb5m" path="res://Sprites/armas/Uzi.png" id="1_jji8u"]
+[ext_resource type="Script" path="res://Cenas/Guns/Uzi.cs" id="2_7yqp3"]
+[ext_resource type="PackedScene" uid="uid://b32vj1rehlwim" path="res://Cenas/Bullets/UziBullet.tscn" id="3_c2wj5"]
+[ext_resource type="Texture2D" uid="uid://6oxitpxbkulx" path="res://Sprites/armas/Uzi Item.png" id="4_yygvg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kdh4"]
+atlas = ExtResource("1_jji8u")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1811o"]
+atlas = ExtResource("1_jji8u")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csewq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kdh4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1811o")
+}],
+"loop": false,
+"name": &"atira",
+"speed": 15.0
+}]
+
+[node name="Uzi" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_csewq")
+animation = &"atira"
+frame_progress = 1.0
+flip_h = true
+script = ExtResource("2_7yqp3")
+DefautBullet = ExtResource("3_c2wj5")
+Cooldown = 0.133
+auto = true
+itemTexture = ExtResource("4_yygvg")
+
+[node name="BP" type="Node2D" parent="."]
+position = Vector2(-11.4286, -2.85714)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]

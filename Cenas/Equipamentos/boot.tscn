@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdgun0uy5cvoy"]
+
+[ext_resource type="Texture2D" uid="uid://wmwo4y8hhnc0" path="res://Sprites/equipamentos/boot.png" id="1_2272g"]
+[ext_resource type="Script" path="res://Cenas/Equipamentos/boot.cs" id="2_2cuyt"]
+
+[node name="Boot" type="Sprite2D"]
+position = Vector2(12, 12)
+texture = ExtResource("1_2272g")
+script = ExtResource("2_2cuyt")

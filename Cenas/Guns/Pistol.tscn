@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=3 uid="uid://dcvfi8hf1jk0l"]
+
+[ext_resource type="Texture2D" uid="uid://cagprpw2aw18q" path="res://Sprites/armas/atirar.png" id="1_mcppr"]
+[ext_resource type="Script" path="res://Cenas/Guns/Pistol.cs" id="3_qnpp7"]
+[ext_resource type="PackedScene" uid="uid://ccnqp2381kbap" path="res://Cenas/Bullets/Bullet.tscn" id="4_ctipq"]
+[ext_resource type="Texture2D" uid="uid://35lfc14s5y7l" path="res://Sprites/armas/pixil-frame-0.png" id="4_py8ng"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxy8o"]
+atlas = ExtResource("1_mcppr")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_35plg"]
+atlas = ExtResource("1_mcppr")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cwgtu"]
+atlas = ExtResource("1_mcppr")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csewq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxy8o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_35plg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cwgtu")
+}],
+"loop": false,
+"name": &"atira",
+"speed": 7.0
+}]
+
+[node name="Pistol" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(-1.42109e-14, 2)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_csewq")
+animation = &"atira"
+flip_h = true
+script = ExtResource("3_qnpp7")
+DefautBullet = ExtResource("4_ctipq")
+Cooldown = 0.4
+auto = true
+itemTexture = ExtResource("4_py8ng")
+
+[node name="BP" type="Node2D" parent="."]
+position = Vector2(-5.71429, -2.85714)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]

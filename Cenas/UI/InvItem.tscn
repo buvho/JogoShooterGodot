@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://ctkhgi7mpq8w1"]
+
+[ext_resource type="Texture2D" uid="uid://gwvtsjl7iacc" path="res://Sprites/equipamentos/knifes..png" id="1_yth38"]
+[ext_resource type="Script" path="res://Cenas/UI/InvItem.cs" id="2_nucxx"]
+
+[sub_resource type="Animation" id="Animation_ip61p"]
+resource_name = "NotGoing"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-25, 0), Vector2(15, 0), Vector2(-5, 0), Vector2(0, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_m7slt"]
+resource_name = "blind"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 7.46427),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m8mqb"]
+_data = {
+"NotGoing": SubResource("Animation_ip61p"),
+"blind": SubResource("Animation_m7slt")
+}
+
+[node name="invItem" type="TextureButton"]
+custom_minimum_size = Vector2(240, 240)
+offset_right = 240.0
+offset_bottom = 240.0
+texture_normal = ExtResource("1_yth38")
+stretch_mode = 0
+script = ExtResource("2_nucxx")
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_m8mqb")
+}
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="pressed" from="." to="." method="OnPressed"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]

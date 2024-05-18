@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://blk3awfdblot5"]
+
+[ext_resource type="Texture2D" uid="uid://dglocno87o62d" path="res://Sprites/equipamentos/demon..png" id="1_8j4md"]
+[ext_resource type="Script" path="res://Cenas/Equipamentos/CoraçãoInfernal.cs" id="2_2aue2"]
+[ext_resource type="Texture2D" uid="uid://c77tujnaiqv7" path="res://Sprites/etc/ParticulaMorte.png" id="3_jtype"]
+
+[sub_resource type="Gradient" id="Gradient_p2b4d"]
+offsets = PackedFloat32Array(0.509025, 0.98917)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_60pkn"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.301961)
+
+[node name="CoraçãoInfernal" type="Sprite2D"]
+position = Vector2(12, 12)
+texture = ExtResource("1_8j4md")
+script = ExtResource("2_2aue2")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+scale = Vector2(7, 7)
+local_coords = true
+draw_order = 1
+texture = ExtResource("3_jtype")
+emission_shape = 3
+emission_rect_extents = Vector2(1.5, -1)
+direction = Vector2(0, 1)
+gravity = Vector2(0, -20)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+linear_accel_min = 1.0
+linear_accel_max = 2.0
+tangential_accel_min = 1.0
+tangential_accel_max = 2.0
+scale_amount_min = 0.15
+scale_amount_max = 0.15
+color = Color(1, 0.07, 0.07, 1)
+color_ramp = SubResource("Gradient_p2b4d")
+color_initial_ramp = SubResource("Gradient_60pkn")

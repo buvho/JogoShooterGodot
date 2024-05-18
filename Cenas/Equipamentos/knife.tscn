@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://vjyi54qpx64r"]
+
+[ext_resource type="Script" path="res://Cenas/Equipamentos/KnifesPath.cs" id="1_x5a22"]
+[ext_resource type="PackedScene" uid="uid://b8i0kjpqoo3a7" path="res://Components/HitBox.tscn" id="2_ggnaw"]
+[ext_resource type="Texture2D" uid="uid://byt4xkgmxfph6" path="res://Sprites/equipamentos/faca magica.png" id="2_rdl2i"]
+
+[sub_resource type="Curve2D" id="Curve2D_m7bcq"]
+_data = {
+"points": PackedVector2Array(-0.00714868, 48.4356, 0, -25, -50, 0, -25, 0, 25, 0, 0, -50, 0, -25, 0, 25, 50, 0, 25, 0, -25, 0, 0, 50, 0, 25, 0, 0, -50, 0)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xdwxt"]
+size = Vector2(16.6374, 6.66684)
+
+[node name="knife" type="Node2D"]
+rotation = -0.000147591
+scale = Vector2(0.5, 0.5)
+
+[node name="KnifesPath" type="Path2D" parent="."]
+rotation = 0.0027067
+curve = SubResource("Curve2D_m7bcq")
+script = ExtResource("1_x5a22")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="KnifesPath"]
+position = Vector2(-50, 0)
+rotation = -1.5708
+
+[node name="HitBox" parent="KnifesPath/PathFollow2D" instance=ExtResource("2_ggnaw")]
+position = Vector2(-2.63751e-06, 60)
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 4
+knock = 25.0
+damage = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KnifesPath/PathFollow2D/HitBox"]
+position = Vector2(-63.843, 0.174019)
+shape = SubResource("RectangleShape2D_xdwxt")
+
+[node name="Sprite2D" type="Sprite2D" parent="KnifesPath/PathFollow2D"]
+scale = Vector2(2.888, 3.5)
+texture = ExtResource("2_rdl2i")
+
+[node name="Timer" type="Timer" parent="KnifesPath/PathFollow2D"]
+one_shot = true
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="KnifesPath"]
+position = Vector2(24.2362, -42.491)
+rotation = 0.56162
+progress = 103.113
+
+[node name="HitBox" parent="KnifesPath/PathFollow2D2" instance=ExtResource("2_ggnaw")]
+position = Vector2(-2.63751e-06, 60)
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 4
+knock = 25.0
+damage = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KnifesPath/PathFollow2D2/HitBox"]
+position = Vector2(-63.843, 0.174019)
+shape = SubResource("RectangleShape2D_xdwxt")
+
+[node name="Sprite2D" type="Sprite2D" parent="KnifesPath/PathFollow2D2"]
+scale = Vector2(2.888, 3.5)
+texture = ExtResource("2_rdl2i")
+
+[node name="Timer" type="Timer" parent="KnifesPath/PathFollow2D2"]
+one_shot = true
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="KnifesPath"]
+position = Vector2(24.4979, 42.3251)
+rotation = 2.57443
+progress = 206.225
+
+[node name="HitBox" parent="KnifesPath/PathFollow2D3" instance=ExtResource("2_ggnaw")]
+position = Vector2(-2.63751e-06, 60)
+rotation = 1.5708
+collision_layer = 4
+collision_mask = 4
+knock = 25.0
+damage = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KnifesPath/PathFollow2D3/HitBox"]
+position = Vector2(-63.843, 0.174019)
+shape = SubResource("RectangleShape2D_xdwxt")
+
+[node name="Sprite2D" type="Sprite2D" parent="KnifesPath/PathFollow2D3"]
+scale = Vector2(2.888, 3.5)
+texture = ExtResource("2_rdl2i")
+
+[node name="Timer" type="Timer" parent="KnifesPath/PathFollow2D3"]
+one_shot = true

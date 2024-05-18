@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://c0t75vi7vi6ag"]
+
+[ext_resource type="Texture2D" uid="uid://hdo485g2muac" path="res://Sprites/armas/Sprite-0002.png" id="1_658uq"]
+[ext_resource type="Script" path="res://Cenas/Guns/Sniper.cs" id="2_cmqfs"]
+[ext_resource type="PackedScene" uid="uid://b2sgmw0t16t8w" path="res://Cenas/Bullets/fumaça.tscn" id="3_1p2m4"]
+[ext_resource type="Texture2D" uid="uid://b88qfhntd7ksu" path="res://Sprites/armas/Sniper.png" id="4_322kd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4elqa"]
+atlas = ExtResource("1_658uq")
+region = Rect2(0, 0, 53, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y8s4d"]
+atlas = ExtResource("1_658uq")
+region = Rect2(53, 0, 53, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5f60q"]
+atlas = ExtResource("1_658uq")
+region = Rect2(106, 0, 53, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phw62"]
+atlas = ExtResource("1_658uq")
+region = Rect2(159, 0, 53, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j4lf0"]
+atlas = ExtResource("1_658uq")
+region = Rect2(212, 0, 53, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_amqoo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4elqa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y8s4d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5f60q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phw62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j4lf0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Sniper" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_amqoo")
+flip_h = true
+script = ExtResource("2_cmqfs")
+"fumaça" = ExtResource("3_1p2m4")
+DefautBullet = ExtResource("3_1p2m4")
+Cooldown = 1.0
+itemTexture = ExtResource("4_322kd")
+
+[node name="BP" type="Node2D" parent="."]
+
+[node name="RayCast" type="RayCast2D" parent="."]
+position = Vector2(-22, -2)
+target_position = Vector2(-10000, 0)
+collision_mask = 20
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]

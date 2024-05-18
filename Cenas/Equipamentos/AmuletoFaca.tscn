@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://baqmioxlei6qi"]
+
+[ext_resource type="Texture2D" uid="uid://gwvtsjl7iacc" path="res://Sprites/equipamentos/knifes..png" id="1_2o4o3"]
+[ext_resource type="Script" path="res://Cenas/Equipamentos/amuleto_faca.cs" id="2_6bjrn"]
+[ext_resource type="PackedScene" uid="uid://vjyi54qpx64r" path="res://Cenas/Equipamentos/knife.tscn" id="3_r1s64"]
+
+[node name="AmuletoFaca" type="Sprite2D"]
+position = Vector2(12, 12)
+texture = ExtResource("1_2o4o3")
+script = ExtResource("2_6bjrn")
+facas = ExtResource("3_r1s64")

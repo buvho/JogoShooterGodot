@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://byagrpq4wtxw3"]
+
+[ext_resource type="Texture2D" uid="uid://celsgrci8psxd" path="res://Sprites/etc/moeda.png" id="1_p0re2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s53ii"]
+radius = 4.0
+
+[node name="Coin" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("CircleShape2D_s53ii")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p0re2")

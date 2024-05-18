@@ -1,0 +1,71 @@
+[gd_scene load_steps=11 format=3 uid="uid://daprrbuquuhvl"]
+
+[ext_resource type="Texture2D" uid="uid://c0homxqlyxj25" path="res://Sprites/armas/Shotgunshoots.png" id="1_q6hjd"]
+[ext_resource type="Script" path="res://Cenas/Guns/Shotgun.cs" id="2_u2bba"]
+[ext_resource type="PackedScene" uid="uid://ccnqp2381kbap" path="res://Cenas/Bullets/Bullet.tscn" id="3_m8b8q"]
+[ext_resource type="Texture2D" uid="uid://cfbiph8jh3ox1" path="res://Sprites/armas/Shotgunitem.png" id="4_gr5qk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nven"]
+atlas = ExtResource("1_q6hjd")
+region = Rect2(0, 0, 45, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0udqw"]
+atlas = ExtResource("1_q6hjd")
+region = Rect2(45, 0, 45, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cpb53"]
+atlas = ExtResource("1_q6hjd")
+region = Rect2(90, 0, 45, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whkfv"]
+atlas = ExtResource("1_q6hjd")
+region = Rect2(135, 0, 45, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a761x"]
+atlas = ExtResource("1_q6hjd")
+region = Rect2(180, 0, 45, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_imtv3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nven")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0udqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cpb53")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_whkfv")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_a761x")
+}],
+"loop": false,
+"name": &"atira",
+"speed": 7.0
+}]
+
+[node name="Shotgun" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(0, 1)
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_imtv3")
+animation = &"atira"
+frame_progress = 1.0
+flip_h = true
+script = ExtResource("2_u2bba")
+DefautBullet = ExtResource("3_m8b8q")
+Cooldown = 0.57
+itemTexture = ExtResource("4_gr5qk")
+
+[node name="BP" type="Node2D" parent="."]
+position = Vector2(-15.7368, -2.417)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]

@@ -1,0 +1,77 @@
+[gd_scene load_steps=7 format=3 uid="uid://b14n2psn1354x"]
+
+[ext_resource type="Script" path="res://Cenas/UI/Pause.cs" id="1_xg7h7"]
+[ext_resource type="PackedScene" uid="uid://ctkhgi7mpq8w1" path="res://Cenas/UI/InvItem.tscn" id="2_kk4ft"]
+[ext_resource type="Texture2D" uid="uid://hmps77pqxfvo" path="res://Sprites/equipamentos/broxe.png" id="3_s4nil"]
+[ext_resource type="Script" path="res://Cenas/UI/PButton.cs" id="4_tyier"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1yh6"]
+
+[sub_resource type="Theme" id="Theme_brk5f"]
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_j1yh6")
+
+[node name="Pause" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_xg7h7")
+equip = ExtResource("2_kk4ft")
+
+[node name="Control" type="Control" parent="."]
+process_mode = 2
+z_as_relative = false
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 0
+size_flags_vertical = 4
+
+[node name="Panel" type="PanelContainer" parent="Control"]
+modulate = Color(0.14902, 0.0627451, 0.356863, 1)
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+theme = SubResource("Theme_brk5f")
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 300.0
+offset_right = 1487.0
+offset_bottom = 994.0
+columns = 5
+
+[node name="Notch" type="TextureRect" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(240, 240)
+layout_direction = 1
+layout_mode = 2
+texture = ExtResource("3_s4nil")
+stretch_mode = 5
+
+[node name="PanelContainer" type="PanelContainer" parent="Control"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 0
+offset_left = 76.0
+offset_top = 45.0
+offset_right = 1831.0
+offset_bottom = 285.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/PanelContainer"]
+layout_mode = 2
+
+[node name="Notch" type="TextureRect" parent="Control/PanelContainer/HBoxContainer"]
+custom_minimum_size = Vector2(240, 240)
+layout_direction = 1
+layout_mode = 2
+texture = ExtResource("3_s4nil")
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 2
+offset_left = 1537.0
+offset_top = 892.0
+offset_right = 1896.0
+offset_bottom = 1048.0
+text = "despause
+"
+script = ExtResource("4_tyier")
+
+[connection signal="pressed" from="Control/Button" to="Control/Button" method="OnPressed"]
