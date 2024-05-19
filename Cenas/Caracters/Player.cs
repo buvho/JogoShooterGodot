@@ -1,27 +1,34 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 
 public partial class Player : CharacterBody2D
 {
+    //movimentação
     public Vector2 Dash;
     public int VelConst = 500;
     public bool DashEnabled = true;
     public bool MousePressed = false;
     public bool automatic = false;
-    public double damX = 1;
 
+    //atributos
+    public double damX = 1;
+    public double maxhealth = 6;
     public int onHand = 0;
+    public int coins = 0;
+
+    //armas e itens
     public PackedScene[] guns = new PackedScene[2];
     [Export]
     PackedScene startergun;
     Gun arma;
-    public List<Gear> inv = new List<Gear>();
 
     [Export]
     PackedScene itemSC;
     public Item itemCloseTo;
 
+    //eventos
     [Signal]
     public delegate void VidaUIEventHandler(double vida);
     [Signal]
@@ -87,7 +94,7 @@ public partial class Player : CharacterBody2D
         //pause
         if (GetTree().Root.GetNode<Tudo>("Tudo").PauseState == 1)
         {
-            CanvasLayer pause = (CanvasLayer)GD.Load<PackedScene>("res://Cenas/UI/pause.tscn").Instantiate();
+            CanvasLayer pause = (CanvasLayer)GD.Load<PackedScene>("res://Cenas/UI/Pause.tscn").Instantiate();
             AddChild(pause);
             GetTree().Paused = true;
             GetTree().Root.GetNode<Tudo>("Tudo").NoUI();
@@ -163,6 +170,7 @@ public partial class Player : CharacterBody2D
 
     }
     private void HealthChanged()
+
     {
         double vida = GetNode<HealthComponent>("HealthComponent").health;
         EmitSignal(SignalName.VidaUI, vida);
@@ -189,5 +197,10 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    public void CoinChange(int amount)
+    {
+        coins += amount;
+        GetNode<Label>("CoinUI/Canvas/HBoxContainer/Label").Text = " " + coins + " ";
+    }
 }
 

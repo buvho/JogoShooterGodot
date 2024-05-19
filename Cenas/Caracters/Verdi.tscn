@@ -61,7 +61,7 @@ flip_h = true
 
 [node name="Pistol" parent="Sprite" instance=ExtResource("2_wwj1y")]
 position = Vector2(-4.28571, -1.49012e-08)
-Cooldown = 0.6
+Cooldown = 1.5
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0.142857, -0.285714)

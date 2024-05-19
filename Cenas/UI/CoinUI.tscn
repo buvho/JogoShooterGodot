@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dgohjaoqilonb"]
+
+[ext_resource type="Texture2D" uid="uid://clh8xyve2xk6l" path="res://Sprites/etc/MOEDAGRANDE.png" id="1_ggdbp"]
+[ext_resource type="Script" path="res://Cenas/UI/CoinUI.cs" id="1_shjsl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nexf0"]
+line_spacing = 4.0
+font_size = 64
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="CoinUI" type="CanvasLayer"]
+script = ExtResource("1_shjsl")
+
+[node name="Canvas" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -674.0
+offset_top = 39.0
+offset_right = -674.0
+offset_bottom = 39.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Canvas"]
+layout_mode = 0
+offset_left = 2042.0
+offset_top = -26.0
+offset_right = 2496.0
+offset_bottom = 74.0
+scale = Vector2(1.2, 1.2)
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Canvas/HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("1_ggdbp")
+
+[node name="Label" type="Label" parent="Canvas/HBoxContainer"]
+layout_mode = 2
+text = " 0 "
+label_settings = SubResource("LabelSettings_nexf0")
+horizontal_alignment = 1

@@ -18,5 +18,6 @@ public partial class Verdi : Enemy
     public void Dead()
     {
         alive = false;
+        SimpleLoot();
     }
 }

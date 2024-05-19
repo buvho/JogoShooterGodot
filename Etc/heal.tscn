@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cld3ou1to6i0p"]
+[gd_scene load_steps=4 format=3 uid="uid://cld3ou1to6i0p"]
 
+[ext_resource type="Script" path="res://Etc/Heal.cs" id="1_d17vc"]
 [ext_resource type="Texture2D" uid="uid://b4f3qlc16xyis" path="res://Sprites/etc/coração.png" id="1_qn803"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s53ii"]
 radius = 4.0
 
 [node name="Heal" type="Area2D"]
+collision_layer = 32
+script = ExtResource("1_d17vc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -13,3 +16,5 @@ shape = SubResource("CircleShape2D_s53ii")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_qn803")
+
+[connection signal="body_entered" from="." to="." method="OnBody"]
