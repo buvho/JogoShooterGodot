@@ -12,6 +12,10 @@ public partial class Heal : Area2D
             p.GetNode<HealthComponent>("HealthComponent").Heal(1);
             QueueFree();
         }
+         if (body is TileMap)
+        {
+            vel = 0;
+        }
     }
     public override void _Ready()
     {

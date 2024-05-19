@@ -15,8 +15,7 @@ public partial class Enemy : CharacterBody2D
     public int Range;
     [Export]   
     PackedScene bulletsc;
-    [Export]
-    int SearchRange = 50;
+
     public Vector2 mov;
     public Vector2 knock = new();
     public CharacterBody2D playe;

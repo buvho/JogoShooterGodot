@@ -13,6 +13,10 @@ public partial class Coin : Area2D
             p.CoinChange(1);
             QueueFree();
         }
+        if (body is TileMap)
+        {
+            vel = 0;
+        }
     }
     public override void _Ready()
     {

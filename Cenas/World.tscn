@@ -1,8 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c7x6qmtxtwibr"]
+[gd_scene load_steps=24 format=3 uid="uid://c7x6qmtxtwibr"]
 
 [ext_resource type="Script" path="res://Cenas/Level.cs" id="1_fq3ow"]
 [ext_resource type="PackedScene" uid="uid://dfeelp3yico72" path="res://Cenas/Caracters/Player.tscn" id="2_fofx5"]
-[ext_resource type="Texture2D" uid="uid://di6w4kplktlf7" path="res://Sprites/TileSet.png" id="2_l004n"]
+[ext_resource type="Texture2D" uid="uid://di6w4kplktlf7" path="res://Levels/TileSet.png" id="2_l004n"]
 [ext_resource type="PackedScene" uid="uid://bh2ovb6a1r04l" path="res://Etc/Portas/porta2.tscn" id="4_6olm4"]
 [ext_resource type="PackedScene" uid="uid://d4iivps7anp7n" path="res://Etc/Portas/porta3.tscn" id="5_0lew2"]
 [ext_resource type="PackedScene" uid="uid://sq80ealy4ihd" path="res://Etc/Portas/porta4.tscn" id="6_o7eqk"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://blk3awfdblot5" path="res://Cenas/Equipamentos/CoraçãoInfernal.tscn" id="11_d20va"]
 [ext_resource type="PackedScene" uid="uid://c0t75vi7vi6ag" path="res://Cenas/Guns/sniper.tscn" id="12_2ack7"]
 [ext_resource type="PackedScene" uid="uid://cdgun0uy5cvoy" path="res://Cenas/Equipamentos/boot.tscn" id="13_hcnkx"]
-[ext_resource type="PackedScene" uid="uid://bnxb588kwkn5d" path="res://Cenas/Caracters/Verdi.tscn" id="15_2ecrf"]
 [ext_resource type="PackedScene" uid="uid://cld3ou1to6i0p" path="res://Etc/Heal.tscn" id="15_ii061"]
 [ext_resource type="PackedScene" uid="uid://byagrpq4wtxw3" path="res://Etc/Coin.tscn" id="16_r7ymw"]
 
@@ -219,15 +218,3 @@ position = Vector2(360.571, 219.571)
 
 [node name="Coin" parent="." instance=ExtResource("16_r7ymw")]
 position = Vector2(375.714, 275)
-
-[node name="Verdi" parent="." instance=ExtResource("15_2ecrf")]
-position = Vector2(66.7143, 77)
-
-[node name="Verdi2" parent="." instance=ExtResource("15_2ecrf")]
-position = Vector2(428, 73.5714)
-
-[node name="Verdi3" parent="." instance=ExtResource("15_2ecrf")]
-position = Vector2(422.857, 422.857)
-
-[node name="Verdi4" parent="." instance=ExtResource("15_2ecrf")]
-position = Vector2(61.5714, 421.143)

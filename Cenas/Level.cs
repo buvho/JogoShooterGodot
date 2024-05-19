@@ -55,7 +55,7 @@ public partial class Level: Node2D
             int PaiNumero = RNG.Next(0,salas.Count-1); //escolhe um numero de uma sala para ser o pai
             pai = salas[PaiNumero];
             visinhos.Clear();
-            switch (RNG.Next(1,6))
+            switch (RNG.Next(1,1))
             {
                 case 1: 
                 LevelSC = GD.Load<PackedScene>("res://Levels/level1.tscn");
