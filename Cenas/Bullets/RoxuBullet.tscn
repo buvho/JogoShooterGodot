@@ -12,7 +12,8 @@ collision_layer = 8
 collision_mask = 27
 
 [node name="BulletComponet" parent="." instance=ExtResource("2_hhv82")]
-speed = 600
+speed = 800
+damage = 1.0
 knock = 0.0
 
 [node name="sprite" type="Sprite2D" parent="."]

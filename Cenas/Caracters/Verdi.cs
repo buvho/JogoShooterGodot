@@ -8,12 +8,12 @@ public partial class Verdi : Enemy
     {
         if (alive)
         {
-            SearchPlayer();
             Erotation();
             MoveToPlayer();
             TryShoot();
             Move(delta);
-        }
+        } 
+        
     }
     public void Dead()
     {

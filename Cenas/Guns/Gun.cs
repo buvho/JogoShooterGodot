@@ -1,8 +1,10 @@
+using System.Runtime.Serialization;
 using Godot;
 
-public partial class Gun : AnimatedSprite2D
+public partial class Gun : AnimatedSprite2D 
 {
     double damX = 1;
+    double damP = 0;
     public bool ready = true;
     [Export]
     PackedScene DefautBullet;
@@ -16,16 +18,23 @@ public partial class Gun : AnimatedSprite2D
     [Export]
     public Texture2D itemTexture;
 
+    [ExportGroup("iteminfo")]
+    [Export]
+    public string Nome;
+    [Export]
+    public string Descrição;
+    
     public Node2D BP;
     public virtual void berravior(PackedScene bulletsc)
     {
 
     }
-    public void Shoot(double damageX = 1)
+    public void Shoot(double damageX = 1,double damageP = 0)
     {
         if (ready)
         {
             damX = damageX;
+            damP = damageP;
             berravior(DefautBullet);
         }
     }
@@ -54,6 +63,7 @@ public partial class Gun : AnimatedSprite2D
         bullet.Position = BP.GlobalPosition;
         bullet.Rotation = BP.GlobalRotation + (float)GD.RandRange(-inacurace,inacurace) + angle ;
         bullet.GetChild<BulletComponent>(0).Durantion = Durantion;
+        bullet.GetChild<BulletComponent>(0).damage += damP;
         bullet.GetChild<BulletComponent>(0).damage *= damX;
         GetTree().Root.AddChild(bullet);
     }

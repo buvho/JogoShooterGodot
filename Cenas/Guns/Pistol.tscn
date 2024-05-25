@@ -46,6 +46,8 @@ DefautBullet = ExtResource("4_ctipq")
 Cooldown = 0.4
 auto = true
 itemTexture = ExtResource("4_py8ng")
+Nome = "Pistola"
+"Descrição" = "arma inicial, da 1 de dano"
 
 [node name="BP" type="Node2D" parent="."]
 position = Vector2(-5.71429, -2.85714)

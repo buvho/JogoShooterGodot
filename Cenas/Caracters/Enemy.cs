@@ -22,7 +22,6 @@ public partial class Enemy : CharacterBody2D
     CharacterBody2D it;
     AnimatedSprite2D sprite;
     public RayCast2D raycast;
-    public bool seen = false;
     public PackedScene healSC;
     public PackedScene coinSC;
 
@@ -35,14 +34,6 @@ public partial class Enemy : CharacterBody2D
         healSC = (PackedScene)GD.Load("res://Etc/Heal.tscn");
     }
 
-    public void SearchPlayer()
-    {
-        raycast.TargetPosition = ToLocal(playe.GlobalPosition);
-            if (raycast.GetCollider() == playe && (playe.GlobalPosition - GlobalPosition).Length() <= Range * 50)
-            {
-                seen = true;
-            }
-    }
     public void Erotation()
     {
         var PlayerAng = (GlobalPosition - playe.GlobalPosition).Angle();
@@ -68,7 +59,8 @@ public partial class Enemy : CharacterBody2D
     }
     public void MoveToPlayer()
     {
-        if ((playe.GlobalPosition - GlobalPosition).Length() <= Range * 10 && seen)
+        raycast.TargetPosition = ToLocal(playe.GlobalPosition);
+        if ((playe.GlobalPosition - GlobalPosition).Length() <= Range * 10)
         {
         GetNode<NavigationAgent2D>("Nav").TargetPosition = playe.GlobalPosition;
         var direction = ToLocal(GetNode<NavigationAgent2D>("Nav").GetNextPathPosition()).Normalized();

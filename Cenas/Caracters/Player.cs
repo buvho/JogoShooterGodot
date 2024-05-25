@@ -1,21 +1,18 @@
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-
 public partial class Player : CharacterBody2D
 {
-    //movimentação
+    //shenanigans
     public Vector2 Dash;
-    public int VelConst = 500;
     public bool DashEnabled = true;
     public bool MousePressed = false;
-    public bool automatic = false;
+    public int onHand = 0;
 
     //atributos
+    public int VelConst = 600;
+    public double damP = 0;
     public double damX = 1;
     public double maxhealth = 6;
-    public int onHand = 0;
     public int coins = 0;
 
     //armas e itens
@@ -23,10 +20,7 @@ public partial class Player : CharacterBody2D
     [Export]
     PackedScene startergun;
     Gun arma;
-
-    [Export]
-    PackedScene itemSC;
-    public Item itemCloseTo;
+    public List<Interactable> CloseTo = new List<Interactable>();
 
     //eventos
     [Signal]
@@ -80,10 +74,6 @@ public partial class Player : CharacterBody2D
         }
 
         //arma automatica
-        if (automatic && MousePressed)
-        {
-            arma.Shoot();
-        }
         arma.Target(GetGlobalMousePosition());
         
         if (MousePressed && arma.auto)
@@ -99,6 +89,14 @@ public partial class Player : CharacterBody2D
             GetTree().Paused = true;
             GetTree().Root.GetNode<Tudo>("Tudo").NoUI();
             GetTree().Root.GetNode<Tudo>("Tudo").PauseState = 2;
+        }
+        if (CloseTo.Count > 0)
+        {
+            CloseTo[0].GetNode<Node2D>("Sprite").Modulate = Color.Color8(150,200,255);
+            if (CloseTo[0] is Item)
+            {
+                CloseTo[0].GetNode<Control>("Panel").Visible = true;
+            }
         }
 
     }
@@ -118,31 +116,13 @@ public partial class Player : CharacterBody2D
        }
        if (@event is InputEventKey KeyEvent) //pegar item
        {
-            if (KeyEvent.Keycode == Key.E && KeyEvent.Pressed && !KeyEvent.Echo && itemCloseTo != null)
+            if (KeyEvent.Keycode == Key.E && KeyEvent.Pressed && !KeyEvent.Echo && CloseTo.Count > 0)
             {
-                if (itemCloseTo.IsGun)
-                {
-                    if(guns[1] == null)
-                    {
-                        guns[1] = itemCloseTo.item;
-                        Change(1);
-                    }
-                    else
-                    {
-                        Item newitem = (Item)itemSC.Instantiate();
-                        newitem.Position = Position;
-                        newitem.item = guns[onHand];
-                        GetTree().Root.GetNode<Node2D>("World").AddChild(newitem);
-                        guns[onHand] = itemCloseTo.item;
-                        Change(onHand);
-                    }
-                } else 
-                {
-                    GetNode<Node>("inventario").AddChild((Gear)itemCloseTo.item.Instantiate());
-                }
-                itemCloseTo.QueueFree();
+            CloseTo[0].OnE(this);
+            try{CloseTo.RemoveAt(0);}
+            catch{};
             }
-            if (KeyEvent.Pressed && !KeyEvent.Echo && KeyEvent.Keycode == Key.Q)//trocar de arma
+            if (KeyEvent.Pressed && !KeyEvent.Echo && KeyEvent.Keycode == Key.Q && arma.ready)//trocar de arma
             {
                 if (onHand == 0 && guns[1] != null)
                 {
@@ -175,7 +155,7 @@ public partial class Player : CharacterBody2D
         double vida = GetNode<HealthComponent>("HealthComponent").health;
         EmitSignal(SignalName.VidaUI, vida);
     }
-    private void Change(int id)
+    public void Change(int id)
     {
 
         foreach (Node2D i in GetNode<Node2D>("Sprite/Hand").GetChildren())
@@ -196,7 +176,6 @@ public partial class Player : CharacterBody2D
             EmitSignal(SignalName.ArmaUI, ((Gun)guns[1].Instantiate()).itemTexture, ((Gun)guns[0].Instantiate()).itemTexture);
         }
     }
-
     public void CoinChange(int amount)
     {
         coins += amount;

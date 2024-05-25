@@ -9,3 +9,5 @@ position = Vector2(12, 12)
 texture = ExtResource("1_2o4o3")
 script = ExtResource("2_6bjrn")
 facas = ExtResource("3_r1s64")
+Nome = "Amuleto das facas"
+"Descrição" = "cria facas giratorias em volta de ti que dão 1 de dano"

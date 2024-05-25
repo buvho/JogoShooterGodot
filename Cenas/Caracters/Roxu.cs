@@ -7,7 +7,6 @@ public partial class Roxu : Enemy
     {
         if (alive)
         {
-            SearchPlayer();
             Erotation();
             MoveToPlayer();
             TryShoot();

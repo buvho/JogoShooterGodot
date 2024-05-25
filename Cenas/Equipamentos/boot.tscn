@@ -7,3 +7,5 @@
 position = Vector2(12, 12)
 texture = ExtResource("1_2272g")
 script = ExtResource("2_2cuyt")
+Nome = "Bota"
+"Descrição" = "Faz tu correr 50% mais rapido"

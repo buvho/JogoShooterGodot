@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata;
 using Godot;
 
 public partial class Level: Node2D
@@ -13,17 +14,18 @@ public partial class Level: Node2D
     [Export]
     PackedScene portaC;
     PackedScene LevelSC;
-    public List<Vector2> visinhos = new List<Vector2>();
-    public static List<Room> salas = new List<Room>(); //objetos da sala
+    public List<Vector2> visinhos = new();
+    public static List<Room> salas = new(); //objetos da sala
+    List<Vector2> ocupados = new();
+    int salasQ = 1;
     const int Tamanho = 496;
 
     public class Room
     {
         public Vector2 pos;
         public int profundidade;
-        public List<Vector2> Parentes = new List<Vector2>();
-
-        public List<Vector2> Entradas = new List<Vector2>();
+        public List<Vector2> Parentes = new();
+        public List<Vector2> Entradas = new();
 
         public Room(Vector2 pos,int profundidade)
         {
@@ -42,20 +44,19 @@ public partial class Level: Node2D
 
         Room pai;
         int salasMax = 15;
-        int salasQ = 1;
-        List<Vector2> ocupados = new List<Vector2> //lista de coodernadas ja ocupadas
-        {
-            new(0,0)
-        };
+        ocupados.Add(new(0,0)); //lista de coodernadas ja ocupadas
+
 
         while (salasQ <= salasMax)
         {
-            Random RNG = new Random(); 
 
-            int PaiNumero = RNG.Next(0,salas.Count-1); //escolhe um numero de uma sala para ser o pai
+            do {
+            int PaiNumero = new Random().Next(0,salas.Count); //escolhe um numero de uma sala para ser o pai
             pai = salas[PaiNumero];
+            } while (pai.Entradas.Count == 0);
             visinhos.Clear();
-            switch (RNG.Next(1,1))
+
+            switch (new Random().Next(1,6))
             {
                 case 1: 
                 LevelSC = GD.Load<PackedScene>("res://Levels/level1.tscn");
@@ -93,24 +94,45 @@ public partial class Level: Node2D
             }
             
             Node2D level = (Node2D)LevelSC.Instantiate();
-            int N = RNG.Next(0,visinhos.Count);
-            Vector2 localdofilho = pai.pos + visinhos[N];       
-            if (!ocupados.Contains(localdofilho) && pai.Entradas.Contains(visinhos[N])) 
+            Criar(pai,level);
+
+        }
+
+
+
+        for (int h = 0; h < 5;h++){
+        visinhos.Clear();
+        int prof = 0;
+        Room bomgus = salas[0];
+        foreach(Room i in salas)
+        {
+            if (prof < i.profundidade)
             {
-                level.Position = localdofilho * Tamanho;
-                AddChild(level);
-                ocupados.Add(localdofilho);
-                salasQ++;
-                    
-                salas.Add(new(localdofilho,pai.profundidade + 1));
-                salas[PaiNumero].Parentes.Add(salas[salas.Count - 1].pos);
-                salas[salas.Count - 1].Parentes.Add(salas[PaiNumero].pos);
-                foreach (Vector2 i in visinhos)
+                bomgus = i;
+                prof = i.profundidade;
+            }
+        }
+        visinhos.Add(new(1, 0));visinhos.Add(new(-1, 0));visinhos.Add(new(0, 1));visinhos.Add(new(0, -1));
+        Criar(bomgus,(Node2D)GD.Load<PackedScene>("res://Levels/Sala do bau.tscn").Instantiate());
+        bomgus.profundidade = 0;
+        foreach(Vector2 i in visinhos)
+        {
+            Vector2 k = bomgus.pos + i;
+            foreach(Room j in salas)
+            {
+                if (k == j.pos)
                 {
-                     salas[salas.Count - 1].Entradas.Add(i * -1);
+                    j.profundidade = 0;
+                    break;
                 }
             }
         }
+        }
+
+        
+        
+
+        //logica de colcar as portas
         foreach (Room  i in salas)
         {
             if (!i.Parentes.Contains(i.pos + new Vector2(1, 0)) && i.Entradas.Contains( new Vector2(1, 0)))
@@ -150,9 +172,33 @@ public partial class Level: Node2D
         AddChild(porrta);
     }
     public void Baixo(Vector2 rm)
+
     {
         StaticBody2D porrta = (StaticBody2D)portaB.Instantiate();
         porrta.Position = new Vector2(208,464) + rm  * Tamanho;
         AddChild(porrta);
+    }
+    public void Criar(Room pai,Node2D level)
+    {
+    for (int i = 0; i < 5;i++)
+    {
+        int N = new Random().Next(0,visinhos.Count);
+        Vector2 localdofilho = pai.pos + visinhos[N]; 
+        if (!ocupados.Contains(localdofilho) && pai.Entradas.Contains(visinhos[N])) 
+        { 
+            level.Position = localdofilho * Tamanho;
+            AddChild(level);
+            ocupados.Add(localdofilho);
+            salasQ++;       
+            salas.Add(new(localdofilho,pai.profundidade + 1));
+            pai.Parentes.Add(salas[^1].pos); // ^1 = salas.count - 1
+            salas[^1].Parentes.Add(pai.pos);
+            foreach (Vector2 j in visinhos)
+            {
+                salas[^1].Entradas.Add(j * -1);
+            }
+            break;
+        }
+    }
     }
 }

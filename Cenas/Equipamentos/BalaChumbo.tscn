@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bgiasvl3wy6po"]
+
+[ext_resource type="Texture2D" uid="uid://yg0acb001bbx" path="res://Sprites/equipamentos/LeadBullet..png" id="1_h8oj0"]
+[ext_resource type="Script" path="res://Cenas/Equipamentos/boot.cs" id="2_v8rhv"]
+
+[node name="LeadBullet" type="Sprite2D"]
+position = Vector2(12, 12)
+texture = ExtResource("1_h8oj0")
+script = ExtResource("2_v8rhv")
+Nome = "Bala de chumbo"
+"Descrição" = "+1 de dano"

@@ -1,15 +1,27 @@
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
 
 public partial class Tudo : Node
 {
-    public int PauseState = 0;
+    public static List<string> loot = new()
+    {
+        "res://Cenas/Equipamentos/boot.tscn",
+        "res://Cenas/Equipamentos/AmuletoFaca.tscn",
+        "res://Cenas/Equipamentos/CoraçãoInfernal.tscn",
+        "res://Cenas/Guns/Uzi.tscn",
+        "res://Cenas/Guns/sniper.tscn",
+        "res://Cenas/Guns/Shotgun.tscn",
+        "res://Cenas/Equipamentos/BalaChumbo.tscn"
+    };
 
+    public int PauseState = 0;
+    public static int kills = 0;
 
     public override void _Ready()
     {
-        ProcessMode = Node.ProcessModeEnum.Always;
+        ProcessMode = ProcessModeEnum.Always;
     }
     public void NoUI()
     {

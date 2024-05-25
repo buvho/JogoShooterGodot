@@ -28,24 +28,24 @@ region = Rect2(180, 0, 45, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_imtv3"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_0nven")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_0udqw")
 }, {
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_cpb53")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_whkfv")
 }, {
-"duration": 0.5,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_a761x")
 }],
 "loop": false,
 "name": &"atira",
-"speed": 7.0
+"speed": 8.0
 }]
 
 [node name="Shotgun" type="AnimatedSprite2D"]
@@ -58,8 +58,10 @@ frame_progress = 1.0
 flip_h = true
 script = ExtResource("2_u2bba")
 DefautBullet = ExtResource("3_m8b8q")
-Cooldown = 0.57
+Cooldown = 0.7
 itemTexture = ExtResource("4_gr5qk")
+Nome = "Boomstick"
+"Descrição" = "dispara 3 tiros de uma vez, cada um dá 3 de dano"
 
 [node name="BP" type="Node2D" parent="."]
 position = Vector2(-15.7368, -2.417)

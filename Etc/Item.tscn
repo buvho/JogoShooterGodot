@@ -1,48 +1,77 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwr2kvr1s4hhe"]
+[gd_scene load_steps=7 format=3 uid="uid://bwr2kvr1s4hhe"]
 
 [ext_resource type="Script" path="res://Etc/Item.cs" id="1_r56de"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3a5pj"]
 radius = 24.0
 
-[sub_resource type="Animation" id="Animation_iayl5"]
-resource_name = "ItemFloat"
+[sub_resource type="LabelSettings" id="LabelSettings_ajsmm"]
+line_spacing = 10.0
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_ki2qw"]
+font_size = 48
+
+[sub_resource type="Animation" id="Animation_gc5r2"]
+resource_name = "Animas"
 length = 2.0
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.99, 2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(0.366022, 0),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(0, 50)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_t7u8f"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eencb"]
 _data = {
-"ItemFloat": SubResource("Animation_iayl5")
+"Animas": SubResource("Animation_gc5r2")
 }
 
-[node name="Item" type="Sprite2D"]
-texture_filter = 1
-position = Vector2(0, -4.37539)
+[node name="Area2D" type="Area2D"]
+z_index = -1
+z_as_relative = false
+collision_layer = 32
 script = ExtResource("1_r56de")
 
-[node name="Area2D" type="Area2D" parent="."]
-collision_layer = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_3a5pj")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-reset_on_save = false
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+
+[node name="Panel" type="PanelContainer" parent="."]
+visible = false
+offset_left = -40.0
+offset_top = -41.0
+offset_right = 670.0
+offset_bottom = 106.0
+scale = Vector2(0.1, 0.1)
+
+[node name="V" type="VSplitContainer" parent="Panel"]
+layout_mode = 2
+
+[node name="nome" type="Label" parent="Panel/V"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+text = "Bologna"
+label_settings = SubResource("LabelSettings_ajsmm")
+
+[node name="descrição" type="Label" parent="Panel/V"]
+layout_mode = 2
+size_flags_vertical = 3
+label_settings = SubResource("LabelSettings_ki2qw")
+autowrap_mode = 2
+
+[node name="Animas" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_t7u8f")
+"": SubResource("AnimationLibrary_eencb")
 }
 
-[connection signal="body_entered" from="Area2D" to="." method="OnBody"]
-[connection signal="body_exited" from="Area2D" to="." method="OnExit"]
+[connection signal="body_entered" from="." to="." method="OnBody"]
+[connection signal="body_exited" from="." to="." method="OnExit"]

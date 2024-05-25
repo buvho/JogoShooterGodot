@@ -24,7 +24,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"atira",
-"speed": 15.0
+"speed": 20.0
 }]
 
 [node name="Uzi" type="AnimatedSprite2D"]
@@ -39,6 +39,8 @@ DefautBullet = ExtResource("3_c2wj5")
 Cooldown = 0.133
 auto = true
 itemTexture = ExtResource("4_yygvg")
+Nome = "Uzi"
+"Descrição" = "dispara rapidamente balas de 0.5 de dano"
 
 [node name="BP" type="Node2D" parent="."]
 position = Vector2(-11.4286, -2.85714)

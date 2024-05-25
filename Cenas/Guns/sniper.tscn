@@ -45,7 +45,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"default",
-"speed": 8.0
+"speed": 6.0
 }]
 
 [node name="Sniper" type="AnimatedSprite2D"]
@@ -56,8 +56,10 @@ flip_h = true
 script = ExtResource("2_cmqfs")
 "fumaça" = ExtResource("3_1p2m4")
 DefautBullet = ExtResource("3_1p2m4")
-Cooldown = 1.0
+Cooldown = 1.2
 itemTexture = ExtResource("4_322kd")
+Nome = "AWP"
+"Descrição" = "dispara uma rapida bala que dá 3 de dano"
 
 [node name="BP" type="Node2D" parent="."]
 

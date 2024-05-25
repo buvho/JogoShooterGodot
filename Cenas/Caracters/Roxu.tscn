@@ -35,7 +35,7 @@ height = 14.0
 [node name="Roxu" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
-collision_mask = 23
+collision_mask = 19
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_h3yki")
@@ -44,7 +44,6 @@ Weight = 0.5
 ShootRange = 200
 Range = 250
 bulletsc = ExtResource("2_nf2u3")
-SearchRange = 100
 
 [node name="Nav" type="NavigationAgent2D" parent="."]
 
@@ -61,6 +60,7 @@ animation = &"new_animation"
 [node name="Shotgun" parent="Sprite" instance=ExtResource("2_k0xmv")]
 frame_progress = 0.0
 D = 3.0
+Cooldown = 1.5
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)

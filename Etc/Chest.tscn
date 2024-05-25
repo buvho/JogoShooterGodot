@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://eitflb3130tu"]
+
+[ext_resource type="Texture2D" uid="uid://dgalhgyo36aep" path="res://Sprites/Props/bau.png" id="1_1vjan"]
+[ext_resource type="Script" path="res://Etc/Chest.cs" id="1_jifto"]
+[ext_resource type="Texture2D" uid="uid://m0kdavhg2s7t" path="res://Sprites/etc/plataforma bau.png" id="2_sl86s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_beou7"]
+atlas = ExtResource("1_1vjan")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oquq7"]
+atlas = ExtResource("1_1vjan")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cm7tq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_beou7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oquq7")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g32tg"]
+size = Vector2(27, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f54x1"]
+radius = 25.02
+
+[node name="Chest" type="Area2D"]
+script = ExtResource("1_jifto")
+
+[node name="Plataforma" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(0, 8)
+texture = ExtResource("2_sl86s")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+z_index = -2
+sprite_frames = SubResource("SpriteFrames_cm7tq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -7)
+collision_layer = 16
+collision_mask = 63
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 7)
+shape = SubResource("RectangleShape2D_g32tg")
+debug_color = Color(0.98332, 0, 0.354125, 0.42)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_f54x1")
+
+[connection signal="body_entered" from="." to="." method="OnBody"]
+[connection signal="body_exited" from="." to="." method="OnExit"]

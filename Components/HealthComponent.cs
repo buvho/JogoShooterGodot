@@ -37,7 +37,7 @@ public partial class HealthComponent : Node2D
             GetParent().GetNode<CollisionShape2D>("Collision").QueueFree();
             GetNode<CpuParticles2D>("Particles").Emitting = true;
             EmitSignal(SignalName.Dead);
-
+            Tudo.kills++;
         }
         }
     private void OnParticlesFinished()
