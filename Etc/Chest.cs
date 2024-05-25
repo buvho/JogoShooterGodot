@@ -24,11 +24,11 @@ public partial class Chest : Interactable
         else if (iten is Gear)
         {
             bool ra = false;
-            foreach(Gear i in p.GetNode("equipados").GetChildren())
+            foreach(Gear i in p.GetNode("equipados").GetChildren().Cast<Gear>())
             {
                 if(i.Nome == (iten as Gear).Nome) {ra = true;}
             }
-            foreach(Gear i in p.GetNode("inventario").GetChildren())
+            foreach(Gear i in p.GetNode("inventario").GetChildren().Cast<Gear>())
             {
                 if(i.Nome == (iten as Gear).Nome) {ra = true;}
             }

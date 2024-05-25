@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bnwwhqv3jm3ay"
-path="res://.godot/imported/pixil-frame-0(1).png-79761228974fc7482a8d277dc2af3025.ctex"
+uid="uid://celsgrci8psxd"
+path="res://.godot/imported/moeda.png-cc9bfe6f8b12a6acf81486c46444088e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/etc/pixil-frame-0(1).png"
-dest_files=["res://.godot/imported/pixil-frame-0(1).png-79761228974fc7482a8d277dc2af3025.ctex"]
+source_file="res://Sprites/Props/moeda.png"
+dest_files=["res://.godot/imported/moeda.png-cc9bfe6f8b12a6acf81486c46444088e.ctex"]
 
 [params]
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://dgalhgyo36aep" path="res://Sprites/Props/bau.png" id="1_1vjan"]
 [ext_resource type="Script" path="res://Etc/Chest.cs" id="1_jifto"]
-[ext_resource type="Texture2D" uid="uid://m0kdavhg2s7t" path="res://Sprites/etc/plataforma bau.png" id="2_sl86s"]
+[ext_resource type="Texture2D" uid="uid://m0kdavhg2s7t" path="res://Sprites/Props/plataforma bau.png" id="2_uejf0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_beou7"]
 atlas = ExtResource("1_1vjan")
@@ -38,7 +38,7 @@ script = ExtResource("1_jifto")
 [node name="Plataforma" type="Sprite2D" parent="."]
 z_index = -2
 position = Vector2(0, 8)
-texture = ExtResource("2_sl86s")
+texture = ExtResource("2_uejf0")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 z_index = -2

@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://byagrpq4wtxw3"]
 
 [ext_resource type="Script" path="res://Etc/Coin.cs" id="1_p2nt8"]
-[ext_resource type="Texture2D" uid="uid://celsgrci8psxd" path="res://Sprites/etc/moeda.png" id="2_3q46s"]
+[ext_resource type="Texture2D" uid="uid://celsgrci8psxd" path="res://Sprites/Props/moeda.png" id="2_3q46s"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_s53ii"]
 radius = 4.0

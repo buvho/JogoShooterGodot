@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clh8xyve2xk6l"
-path="res://.godot/imported/MOEDAGRANDE.png-c55326bc61681777f71dc83b35d35302.ctex"
+path="res://.godot/imported/MOEDAGRANDE.png-b629f4d99f15e6c47578bb8fb20ddb32.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/etc/MOEDAGRANDE.png"
-dest_files=["res://.godot/imported/MOEDAGRANDE.png-c55326bc61681777f71dc83b35d35302.ctex"]
+source_file="res://Sprites/UI/MOEDAGRANDE.png"
+dest_files=["res://.godot/imported/MOEDAGRANDE.png-b629f4d99f15e6c47578bb8fb20ddb32.ctex"]
 
 [params]
 

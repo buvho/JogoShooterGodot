@@ -47,10 +47,10 @@ texture_filter = 1
 
 [node name="Panel" type="PanelContainer" parent="."]
 visible = false
-offset_left = -40.0
-offset_top = -41.0
-offset_right = 670.0
-offset_bottom = 106.0
+offset_left = -35.0
+offset_top = -43.0
+offset_right = 665.0
+offset_bottom = 197.0
 scale = Vector2(0.1, 0.1)
 
 [node name="V" type="VSplitContainer" parent="Panel"]
@@ -63,6 +63,7 @@ text = "Bologna"
 label_settings = SubResource("LabelSettings_ajsmm")
 
 [node name="descrição" type="Label" parent="Panel/V"]
+custom_minimum_size = Vector2(10, 10)
 layout_mode = 2
 size_flags_vertical = 3
 label_settings = SubResource("LabelSettings_ki2qw")

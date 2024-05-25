@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://celsgrci8psxd"
-path="res://.godot/imported/moeda.png-4c5ad86cb2ade2c84f3ecc7c18f64dd4.ctex"
+uid="uid://cdblyebupt1o8"
+path="res://.godot/imported/plataforma bau grande.png-6fb4b9cc768141afe492c00085d19a00.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/etc/moeda.png"
-dest_files=["res://.godot/imported/moeda.png-4c5ad86cb2ade2c84f3ecc7c18f64dd4.ctex"]
+source_file="res://Sprites/Props/plataforma bau grande.png"
+dest_files=["res://.godot/imported/plataforma bau grande.png-6fb4b9cc768141afe492c00085d19a00.ctex"]
 
 [params]
 

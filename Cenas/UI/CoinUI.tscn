@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dgohjaoqilonb"]
 
-[ext_resource type="Texture2D" uid="uid://clh8xyve2xk6l" path="res://Sprites/etc/MOEDAGRANDE.png" id="1_ggdbp"]
+[ext_resource type="Texture2D" uid="uid://clh8xyve2xk6l" path="res://Sprites/UI/MOEDAGRANDE.png" id="1_ggdbp"]
 [ext_resource type="Script" path="res://Cenas/UI/CoinUI.cs" id="1_shjsl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_nexf0"]

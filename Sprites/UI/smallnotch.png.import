@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bef74wmxdd45x"
-path="res://.godot/imported/pixil-frame-0(3).png-14b85f5d909a8bab15f32e374ed48208.ctex"
+uid="uid://cfuff3neruxjn"
+path="res://.godot/imported/smallnotch.png-a7b425ad6014074a03f8617da6026345.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/etc/pixil-frame-0(3).png"
-dest_files=["res://.godot/imported/pixil-frame-0(3).png-14b85f5d909a8bab15f32e374ed48208.ctex"]
+source_file="res://Sprites/UI/smallnotch.png"
+dest_files=["res://.godot/imported/smallnotch.png-a7b425ad6014074a03f8617da6026345.ctex"]
 
 [params]
 

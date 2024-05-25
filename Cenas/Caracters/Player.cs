@@ -14,6 +14,10 @@ public partial class Player : CharacterBody2D
     public double damX = 1;
     public double maxhealth = 6;
     public int coins = 0;
+    public int coinL = 0;
+    public int NotchUse = 0;
+
+    public int NotchLimit =5;
 
     //armas e itens
     public PackedScene[] guns = new PackedScene[2];
@@ -119,8 +123,8 @@ public partial class Player : CharacterBody2D
             if (KeyEvent.Keycode == Key.E && KeyEvent.Pressed && !KeyEvent.Echo && CloseTo.Count > 0)
             {
             CloseTo[0].OnE(this);
-            try{CloseTo.RemoveAt(0);}
-            catch{};
+            if(CloseTo.Count > 0)
+            {CloseTo.RemoveAt(0);}
             }
             if (KeyEvent.Pressed && !KeyEvent.Echo && KeyEvent.Keycode == Key.Q && arma.ready)//trocar de arma
             {

@@ -18,7 +18,7 @@ public partial class Enemy : CharacterBody2D
 
     public Vector2 mov;
     public Vector2 knock = new();
-    public CharacterBody2D playe;
+    public Player playe;
     CharacterBody2D it;
     AnimatedSprite2D sprite;
     public RayCast2D raycast;
@@ -27,7 +27,7 @@ public partial class Enemy : CharacterBody2D
 
     public override void _Ready()
     {
-        playe = GetTree().Root.GetNode("World").GetNode<CharacterBody2D>("Player");
+        playe = GetTree().Root.GetNode("World").GetNode<Player>("Player");
         sprite = GetNode<AnimatedSprite2D>("Sprite");
         raycast = GetNode<RayCast2D>("RayCast");
         coinSC = (PackedScene)GD.Load("res://Etc/Coin.tscn");
@@ -92,10 +92,11 @@ public partial class Enemy : CharacterBody2D
     public void SimpleLoot()
     {
         Random RNG = new Random();
-        int n = RNG.Next(1,11);
+        int n = RNG.Next(1,11) + playe.coinL;
         int m = 11;
         int v = -10;
-        if (n == 10)
+
+        if (n >= 10)
         //GlobalPosition + new Vector2(RNG.Next(-40,40),RNG.Next(-40,40));
         {
             Coin coinz = (Coin)coinSC.Instantiate();
@@ -114,6 +115,9 @@ public partial class Enemy : CharacterBody2D
             CallDeferred(Node2D.MethodName.AddSibling, coinz);
             coinz.SetDeferred("position",Position + new Vector2(RNG.Next(v,m),RNG.Next(v,m)));
         }
+
+
+
         n = RNG.Next(1,11);
         if (n == 10)
         {

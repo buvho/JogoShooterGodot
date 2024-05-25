@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bd13qmk30gbkf"]
 
 [ext_resource type="Script" path="res://Cenas/UI/VidaUI.cs" id="1_272w8"]
-[ext_resource type="Texture2D" uid="uid://bnwwhqv3jm3ay" path="res://Sprites/etc/pixil-frame-0(1).png" id="1_g6203"]
-[ext_resource type="Texture2D" uid="uid://bef74wmxdd45x" path="res://Sprites/etc/pixil-frame-0(3).png" id="2_uepmv"]
+[ext_resource type="Texture2D" uid="uid://bnwwhqv3jm3ay" path="res://Sprites/UI/pixil-frame-0(1).png" id="1_g6203"]
+[ext_resource type="Texture2D" uid="uid://bef74wmxdd45x" path="res://Sprites/UI/pixil-frame-0(3).png" id="2_uepmv"]
 
 [node name="VidaUI" type="CanvasLayer"]
 script = ExtResource("1_272w8")

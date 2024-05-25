@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cdblyebupt1o8"
-path="res://.godot/imported/plataforma bau grande.png-857ce0ad9e8e770a0515cd368a87e33e.ctex"
+uid="uid://b4f3qlc16xyis"
+path="res://.godot/imported/coração.png-e0813dca9651f7b018ad08ff90fa0299.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/etc/plataforma bau grande.png"
-dest_files=["res://.godot/imported/plataforma bau grande.png-857ce0ad9e8e770a0515cd368a87e33e.ctex"]
+source_file="res://Sprites/Props/coração.png"
+dest_files=["res://.godot/imported/coração.png-e0813dca9651f7b018ad08ff90fa0299.ctex"]
 
 [params]
 

@@ -1,9 +1,11 @@
+using System.Runtime.InteropServices;
 using Godot;
 
 public partial class InvItem : TextureButton
 {
+    public int cost;
     bool equiped = false;
-    static bool ocupied = false;
+    bool ocupied = false;
     public int ind;
     public Control pausemenu;
     public TextureRect NotchInv;   
@@ -18,6 +20,8 @@ public partial class InvItem : TextureButton
         copy = (InvItem)GD.Load<PackedScene>("res://Cenas/UI/InvItem.tscn").Instantiate();
         copy.TextureNormal = TextureNormal;
         copy.Scale = Scale;
+        copy.cost = cost;
+        TooltipText = "*"+cost;
 
         if (GetParent() is HBoxContainer)
         {
@@ -26,6 +30,8 @@ public partial class InvItem : TextureButton
     }
     public void OnPressed()
     {
+        if (GetTree().Root.GetNode<Player>("World/Player").NotchUse + cost > GetTree().Root.GetNode<Player>("World/Player").NotchLimit)
+        {ocupied = true;} else {ocupied = false;}
         if (!equiped && !ocupied) //caso o equipamento esteja no inventario com espaço disponivel
         {
             copy.Disabled = true;
@@ -45,7 +51,7 @@ public partial class InvItem : TextureButton
             GetNode<AnimationPlayer>("Animation").Play("blind");
             _Ready();
         }
-        else if (ocupied && equiped) //caso o equipamento esteja equipado
+        else if (equiped) //caso o equipamento esteja equipado
         {
             copy.Disabled = true;
             pausemenu.AddChild(copy);
@@ -63,7 +69,6 @@ public partial class InvItem : TextureButton
         var tweenbitches = CreateTween();
         tweenbitches.TweenProperty(this,"position",NotchEquip.GlobalPosition,0.2);
         equiped = true;
-        ocupied = true;
         copy.Disabled = false;
         GetNode<Timer>("Timer").Start(0.2);
     }
@@ -73,7 +78,6 @@ public partial class InvItem : TextureButton
         var tweenbitches = CreateTween();
         tweenbitches.TweenProperty(this,"position",NotchInv.GlobalPosition,0.2);
         equiped = false;
-        ocupied = false;
         copy.Disabled = false;
         GetNode<Timer>("Timer").Start(0.2);
     }
@@ -87,7 +91,7 @@ public partial class InvItem : TextureButton
         NotchInv.Visible = true;
         QueueFree();
     }
-    else if (equiped && ocupied) //se ele ta equipado
+    else if (equiped) //se ele ta equipado
     {
         copy.GlobalPosition = GlobalPosition;
         copy.equiped = true;

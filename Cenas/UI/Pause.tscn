@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b14n2psn1354x"]
+[gd_scene load_steps=8 format=3 uid="uid://b14n2psn1354x"]
 
 [ext_resource type="Script" path="res://Cenas/UI/Pause.cs" id="1_xg7h7"]
 [ext_resource type="PackedScene" uid="uid://ctkhgi7mpq8w1" path="res://Cenas/UI/InvItem.tscn" id="2_kk4ft"]
 [ext_resource type="Texture2D" uid="uid://hmps77pqxfvo" path="res://Sprites/equipamentos/broxe.png" id="3_s4nil"]
 [ext_resource type="Script" path="res://Cenas/UI/PButton.cs" id="4_tyier"]
+[ext_resource type="Texture2D" uid="uid://cfuff3neruxjn" path="res://Sprites/UI/smallnotch.png" id="5_1g0n8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j1yh6"]
 
@@ -31,21 +32,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 theme = SubResource("Theme_brk5f")
 
-[node name="GridContainer" type="GridContainer" parent="Control"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 300.0
-offset_right = 1487.0
-offset_bottom = 994.0
-columns = 5
-
-[node name="Notch" type="TextureRect" parent="Control/GridContainer"]
-custom_minimum_size = Vector2(240, 240)
-layout_direction = 1
-layout_mode = 2
-texture = ExtResource("3_s4nil")
-stretch_mode = 5
-
 [node name="PanelContainer" type="PanelContainer" parent="Control"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 0
@@ -63,6 +49,44 @@ layout_direction = 1
 layout_mode = 2
 texture = ExtResource("3_s4nil")
 stretch_mode = 5
+
+[node name="GridContainer" type="GridContainer" parent="Control"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 381.0
+offset_right = 1439.0
+offset_bottom = 1033.0
+columns = 5
+
+[node name="Notch" type="TextureRect" parent="Control/GridContainer"]
+custom_minimum_size = Vector2(240, 240)
+layout_direction = 1
+layout_mode = 2
+texture = ExtResource("3_s4nil")
+stretch_mode = 5
+
+[node name="BackNotch" type="TextureRect" parent="Control"]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 284.0
+offset_right = 115.0
+offset_bottom = 291.0
+scale = Vector2(7, 7)
+texture = ExtResource("5_1g0n8")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="FrontNotch" type="TextureRect" parent="Control"]
+modulate = Color(2, 2, 2, 1)
+layout_mode = 0
+offset_left = 75.0
+offset_top = 284.0
+offset_right = 76.0
+offset_bottom = 292.0
+scale = Vector2(7, 7)
+texture = ExtResource("5_1g0n8")
+expand_mode = 1
+stretch_mode = 1
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 2

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://m0kdavhg2s7t"
-path="res://.godot/imported/plataforma bau.png-0d8011b8353d0bcb1d96758363dd5274.ctex"
+path="res://.godot/imported/plataforma bau.png-b0f8bf9692d51f0734d5c4ddcc9114ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/etc/plataforma bau.png"
-dest_files=["res://.godot/imported/plataforma bau.png-0d8011b8353d0bcb1d96758363dd5274.ctex"]
+source_file="res://Sprites/Props/plataforma bau.png"
+dest_files=["res://.godot/imported/plataforma bau.png-b0f8bf9692d51f0734d5c4ddcc9114ec.ctex"]
 
 [params]
 

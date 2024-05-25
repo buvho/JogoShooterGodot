@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://bum7se6wgyrar"]
+
+[ext_resource type="Texture2D" uid="uid://dnhe8fuguiwa0" path="res://Sprites/equipamentos/GoldenBullet..png" id="1_t4inh"]
+[ext_resource type="Script" path="res://Cenas/Equipamentos/BalaOuro.cs" id="2_bxfhs"]
+
+[node name="GoldenBullet" type="Sprite2D"]
+position = Vector2(12, 12)
+texture = ExtResource("1_t4inh")
+script = ExtResource("2_bxfhs")
+cost = 1
+Nome = "Bala de ouro (1)"
+"Descrição" = "os inimigos dão mais $$$"

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b4f3qlc16xyis"
-path="res://.godot/imported/coração.png-112a5aa4b7089d74da48a9b5740858ad.ctex"
+uid="uid://bef74wmxdd45x"
+path="res://.godot/imported/pixil-frame-0(3).png-7440399ef48f5bdc1ae57232b8b10fba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/etc/coração.png"
-dest_files=["res://.godot/imported/coração.png-112a5aa4b7089d74da48a9b5740858ad.ctex"]
+source_file="res://Sprites/UI/pixil-frame-0(3).png"
+dest_files=["res://.godot/imported/pixil-frame-0(3).png-7440399ef48f5bdc1ae57232b8b10fba.ctex"]
 
 [params]
 
