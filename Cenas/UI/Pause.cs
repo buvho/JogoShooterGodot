@@ -25,14 +25,14 @@ public partial class Pause : CanvasLayer
         {
             InvItem a = (InvItem)equip.Instantiate();
             a.TextureNormal = i.Texture;
-            a.cost = i.cost;
+            a.eq = i;
             grid.AddChild(a);
         }
         foreach (Gear i in equipados.GetChildren().Cast<Gear>())
         {
             InvItem a = (InvItem)equip.Instantiate();
             a.TextureNormal = i.Texture;
-            a.cost = i.cost;
+            a.eq = i;
             Container.AddChild(a);
         }
         grid.GetNode<CanvasItem>("Notch").MoveToFront();

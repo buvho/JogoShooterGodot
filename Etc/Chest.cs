@@ -13,7 +13,7 @@ public partial class Chest : Interactable
         pl = p;
         bool  c = true;
         while (c){
-        R = new Random().Next(0,Tudo.loot.Count - 1);
+        R = new Random().Next(0,Tudo.loot.Count);
         GD.Print(R);
         itemSC = GD.Load<PackedScene>(Tudo.loot[R]);
         Node2D iten = (Node2D)itemSC.Instantiate();
@@ -48,7 +48,7 @@ public partial class Chest : Interactable
             Item drop = (Item)GD.Load<PackedScene>("res://Etc/Item.tscn").Instantiate();
             drop.item = itemSC;
             drop.Position = Position;
-            GetTree().Root.GetNode("World").AddChild(drop);
+            GetParent().AddChild(drop);
             drop.Wee(new Vector2(0,25));
             Monitoring = false;
             return false;

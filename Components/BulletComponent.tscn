@@ -1,12 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://piag05lbnleh"]
+[gd_scene load_steps=2 format=3 uid="uid://bl6g47l7fc33k"]
 
-[ext_resource type="Script" path="res://Components/BulletComponent.cs" id="1_l3ddj"]
+[ext_resource type="Script" path="res://Cenas/Bullets/Bullet.cs" id="1_lqv8e"]
 
 [node name="BulletComponent" type="Node2D"]
-script = ExtResource("1_l3ddj")
-speed = null
-damage = null
-knock = null
+script = ExtResource("1_lqv8e")
 
 [node name="Timer" type="Timer" parent="."]
 

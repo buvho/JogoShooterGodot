@@ -38,7 +38,7 @@ public partial class Gun : AnimatedSprite2D
             berravior(DefautBullet);
         }
     }
-    public void Shoot(PackedScene bulletsc,double damX = 0)
+    public void Shoot(PackedScene bulletsc)
     {
         if (ready)
         {
@@ -59,12 +59,12 @@ public partial class Gun : AnimatedSprite2D
     }
      public void ShootBullet(PackedScene bulletsc,float Durantion = 5,double inacurace = 0, float angle = 0)
     {
-        Area2D bullet = (Area2D)bulletsc.Instantiate();
+        Bullet bullet = (Bullet)bulletsc.Instantiate();
         bullet.Position = BP.GlobalPosition;
         bullet.Rotation = BP.GlobalRotation + (float)GD.RandRange(-inacurace,inacurace) + angle ;
-        bullet.GetChild<BulletComponent>(0).Durantion = Durantion;
-        bullet.GetChild<BulletComponent>(0).damage += damP;
-        bullet.GetChild<BulletComponent>(0).damage *= damX;
+        bullet.Durantion = Durantion;
+        bullet.damage += damP;
+        bullet.damage *= damX;
         GetTree().Root.AddChild(bullet);
     }
 

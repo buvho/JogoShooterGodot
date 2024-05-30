@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=3 uid="uid://dmoavxsmr10pq"]
+
+[ext_resource type="Texture2D" uid="uid://b3rgkhhd4cmfr" path="res://Sprites/armas/wand.png" id="1_3v8t4"]
+[ext_resource type="Script" path="res://Cenas/Guns/wand.cs" id="2_71x0n"]
+[ext_resource type="PackedScene" uid="uid://jslmdhamm155" path="res://Cenas/Bullets/MagicBullet.tscn" id="3_fqcaa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csewq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3v8t4")
+}],
+"loop": false,
+"name": &"atira",
+"speed": 7.0
+}]
+
+[node name="wand" type="AnimatedSprite2D"]
+texture_filter = 1
+position = Vector2(-1.42109e-14, 2)
+scale = Vector2(0.7, 0.7)
+sprite_frames = SubResource("SpriteFrames_csewq")
+animation = &"atira"
+flip_h = true
+script = ExtResource("2_71x0n")
+DefautBullet = ExtResource("3_fqcaa")
+Cooldown = 0.2
+auto = true
+itemTexture = ExtResource("1_3v8t4")
+Nome = "magic wand"
+"Descrição" = "Atira rapidamente balas magicas teleguiadas que dão 0.3 de dano"
+
+[node name="BP" type="Node2D" parent="."]
+position = Vector2(-5.71429, -2.85714)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="OnTimeOut"]

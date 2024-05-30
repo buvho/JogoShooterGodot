@@ -50,6 +50,7 @@ animations = [{
 
 [node name="Sniper" type="AnimatedSprite2D"]
 texture_filter = 1
+position = Vector2(3, 2)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_amqoo")
 flip_h = true

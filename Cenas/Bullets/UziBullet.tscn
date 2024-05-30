@@ -1,21 +1,21 @@
 [gd_scene load_steps=4 format=3 uid="uid://b32vj1rehlwim"]
 
-[ext_resource type="PackedScene" uid="uid://piag05lbnleh" path="res://Components/BulletComponent.tscn" id="1_evk3a"]
+[ext_resource type="Script" path="res://Cenas/Bullets/Bullet.cs" id="1_dtqhj"]
 [ext_resource type="Texture2D" uid="uid://jcriy5r2s4g8" path="res://Sprites/balas/UziBullet.png" id="2_ofup5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xwxlg"]
-radius = 1.84089
+radius = 2.22222
 
-[node name="HitBox" type="Area2D"]
+[node name="UziBullet" type="Area2D"]
 scale = Vector2(1.5, 1.5)
 collision_layer = 2
 collision_mask = 20
-
-[node name="BulletComponet" parent="." instance=ExtResource("1_evk3a")]
-scale = Vector2(6, 6)
-speed = 1200
+script = ExtResource("1_dtqhj")
+speed = 1500.0
 damage = 0.5
-knock = 20.0
+knock = 50.0
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -23,8 +23,10 @@ scale = Vector2(5, 5)
 texture = ExtResource("2_ofup5")
 
 [node name="collisão" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 2.66667)
 rotation = 1.5708
 scale = Vector2(6, 6)
 shape = SubResource("CircleShape2D_xwxlg")
 
-[connection signal="body_entered" from="." to="BulletComponet" method="OnBody"]
+[connection signal="body_entered" from="." to="." method="OnBody"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeout"]

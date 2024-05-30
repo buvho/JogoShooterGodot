@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://jslmdhamm155"]
+
+[ext_resource type="Script" path="res://Cenas/Bullets/Bullet.cs" id="1_2duo0"]
+[ext_resource type="Texture2D" uid="uid://622xei40f8an" path="res://Sprites/balas/Bala magica.png" id="2_p7gbc"]
+[ext_resource type="Script" path="res://Cenas/Bullets/BalaMagica.cs" id="3_ci8jg"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g1a3d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p7gbc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbyxx"]
+radius = 2.2549
+height = 4.5098
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l0l3t"]
+radius = 147.289
+
+[node name="Bullet" type="Area2D"]
+scale = Vector2(1.7, 1.7)
+collision_layer = 2
+collision_mask = 20
+script = ExtResource("1_2duo0")
+speed = 1200.0
+damage = 0.3
+knock = 20.0
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0.5, 0)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_g1a3d")
+
+[node name="collisão" type="CollisionShape2D" parent="."]
+position = Vector2(-5.96046e-08, 1.19209e-07)
+rotation = 1.5708
+scale = Vector2(6, 6)
+shape = SubResource("CapsuleShape2D_bbyxx")
+
+[node name="BalaMagica" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+script = ExtResource("3_ci8jg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BalaMagica"]
+shape = SubResource("CircleShape2D_l0l3t")
+debug_color = Color(0.97287, 0, 0.438018, 0.42)
+
+[node name="RayCast" type="RayCast2D" parent="BalaMagica"]
+collision_mask = 20
+
+[connection signal="body_entered" from="." to="." method="OnBody"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeout"]
+[connection signal="body_entered" from="BalaMagica" to="BalaMagica" method="OnBody"]
+[connection signal="body_exited" from="BalaMagica" to="BalaMagica" method="OnExit"]

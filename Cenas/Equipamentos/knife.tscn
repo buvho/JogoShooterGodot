@@ -33,7 +33,7 @@ rotation = 1.5708
 collision_layer = 4
 collision_mask = 4
 knock = 25.0
-damage = 1.0
+damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnifesPath/PathFollow2D/HitBox"]
 position = Vector2(-63.843, 0.174019)
@@ -57,7 +57,7 @@ rotation = 1.5708
 collision_layer = 4
 collision_mask = 4
 knock = 25.0
-damage = 1.0
+damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnifesPath/PathFollow2D2/HitBox"]
 position = Vector2(-63.843, 0.174019)
@@ -81,7 +81,7 @@ rotation = 1.5708
 collision_layer = 4
 collision_mask = 4
 knock = 25.0
-damage = 1.0
+damage = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KnifesPath/PathFollow2D3/HitBox"]
 position = Vector2(-63.843, 0.174019)

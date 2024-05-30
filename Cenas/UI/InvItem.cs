@@ -3,7 +3,7 @@ using Godot;
 
 public partial class InvItem : TextureButton
 {
-    public int cost;
+    public Gear eq;
     bool equiped = false;
     bool ocupied = false;
     public int ind;
@@ -18,10 +18,10 @@ public partial class InvItem : TextureButton
         NotchEquip = pausemenu.GetNode<TextureRect>("PanelContainer/HBoxContainer/Notch");
         NotchInv = pausemenu.GetNode<TextureRect>("GridContainer/Notch");
         copy = (InvItem)GD.Load<PackedScene>("res://Cenas/UI/InvItem.tscn").Instantiate();
-        copy.TextureNormal = TextureNormal;
         copy.Scale = Scale;
-        copy.cost = cost;
-        TooltipText = "*"+cost;
+        copy.eq = eq;
+        TextureNormal = eq.Texture;
+        TooltipText = $"{eq.Name} ({eq.cost}) \n {eq.Descrição}";
 
         if (GetParent() is HBoxContainer)
         {
@@ -30,7 +30,7 @@ public partial class InvItem : TextureButton
     }
     public void OnPressed()
     {
-        if (GetTree().Root.GetNode<Player>("World/Player").NotchUse + cost > GetTree().Root.GetNode<Player>("World/Player").NotchLimit)
+        if (GetTree().Root.GetNode<Player>("World/Player").NotchUse + eq.cost > GetTree().Root.GetNode<Player>("World/Player").NotchLimit)
         {ocupied = true;} else {ocupied = false;}
         if (!equiped && !ocupied) //caso o equipamento esteja no inventario com espaço disponivel
         {

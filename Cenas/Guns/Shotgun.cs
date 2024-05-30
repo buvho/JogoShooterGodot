@@ -3,12 +3,12 @@ using Godot;
 public partial class Shotgun : Gun
 {
     [Export]
-    double D = 1.5;
+    float D = 1f;
        public override void berravior(PackedScene bulletsc)
     {
         Starter(Cooldown);
-        ShootBullet(bulletsc,(float)D);
-        ShootBullet(bulletsc,(float)D,(float)0.3);
-        ShootBullet(bulletsc,(float)D,(float)-0.3);
+        ShootBullet(bulletsc,D,0.1f);
+        ShootBullet(bulletsc,D,0.1f,0.3f);
+        ShootBullet(bulletsc,D,0.1f,-0.3f);
     }
 }

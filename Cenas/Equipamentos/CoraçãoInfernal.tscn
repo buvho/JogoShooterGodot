@@ -15,9 +15,9 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.301961)
 position = Vector2(12, 12)
 texture = ExtResource("1_8j4md")
 script = ExtResource("2_2aue2")
-cost = 3
-Nome = "Coração demoniaco (3)"
+Nome = "Coração demoniaco"
 "Descrição" = "tu da +50% de dano, mas toma o dobro de dano"
+cost = 3
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 scale = Vector2(7, 7)

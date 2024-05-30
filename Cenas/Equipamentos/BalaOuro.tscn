@@ -7,6 +7,6 @@
 position = Vector2(12, 12)
 texture = ExtResource("1_t4inh")
 script = ExtResource("2_bxfhs")
-cost = 1
-Nome = "Bala de ouro (1)"
+Nome = "Bala de ouro"
 "Descrição" = "os inimigos dão mais $$$"
+cost = 1

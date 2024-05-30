@@ -8,6 +8,7 @@ public partial class Item : Interactable
     public override void _Ready()
     {
         Sprite2D s = GetNode<Sprite2D>("Sprite");
+        GetNode<AnimationPlayer>("Animas").Play("Animas");
         if (item.Instantiate() is Gun gun)
         {
             s.Texture = gun.itemTexture;
@@ -19,7 +20,7 @@ public partial class Item : Interactable
         else if (item.Instantiate() is Gear eq)
         {
             s.Texture = eq.Texture;
-            GetNode<Label>("Panel/V/nome").Text = eq.Nome;
+            GetNode<Label>("Panel/V/nome").Text = $"{eq.Nome} ({eq.cost})";
             GetNode<Label>("Panel/V/descrição").Text = eq.Descrição;
         }
     }

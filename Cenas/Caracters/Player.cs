@@ -9,15 +9,14 @@ public partial class Player : CharacterBody2D
     public int onHand = 0;
 
     //atributos
-    public int VelConst = 600;
+    public int VelConst = 650;
     public double damP = 0;
     public double damX = 1;
     public double maxhealth = 6;
     public int coins = 0;
     public int coinL = 0;
     public int NotchUse = 0;
-
-    public int NotchLimit =5;
+    public int NotchLimit = 5;
 
     //armas e itens
     public PackedScene[] guns = new PackedScene[2];
@@ -46,35 +45,43 @@ public partial class Player : CharacterBody2D
         //movimento
         var sprite = GetNode<AnimatedSprite2D>("Sprite");
         Vector2 mov = Input.GetVector("left","right","up","down") * VelConst;
+        sprite.SpeedScale = VelConst / 650;
 
         if (Input.IsActionJustPressed("Dash") && DashEnabled == true)
         {
-            Dash = mov.Normalized() * 130000;
+            Dash = mov.Normalized() * 200000;
             DashEnabled = false;
             GetNode<Timer>("DashTimer").Start(0.1);
         }
         
 		Velocity = mov + (Dash * (float)delta);
 		MoveAndSlide();
-    
+
+
+        float scl = 0.8f;
         if (mov == Vector2.Zero)
         {
         sprite.Play("stop");
         }
         else
         {
+        if ((Velocity.X > 0 && sprite.Scale.X == scl )||(Velocity.X < 0 && sprite.Scale.X == -scl ))
+        {
+        sprite.PlayBackwards("walk");
+        } else {
         sprite.Play("walk");
+        }
         }
              
         //rotation shenanigans
         var mouseAng = (GlobalPosition - GetGlobalMousePosition()).Angle();
         if (mouseAng > -1.5708 && mouseAng < 1.5708) 
         {
-        sprite.Scale = new Vector2(1,1);
+        sprite.Scale = new Vector2(scl,scl);
         }
         else 
         {
-        sprite.Scale = new Vector2(-1,1);
+        sprite.Scale = new Vector2(-scl,scl);
         }
 
         //arma automatica
@@ -82,7 +89,7 @@ public partial class Player : CharacterBody2D
         
         if (MousePressed && arma.auto)
         {
-            arma.Shoot(damX);
+            arma.Shoot(damX,damP);
         }
         
         //pause
@@ -154,7 +161,6 @@ public partial class Player : CharacterBody2D
 
     }
     private void HealthChanged()
-
     {
         double vida = GetNode<HealthComponent>("HealthComponent").health;
         EmitSignal(SignalName.VidaUI, vida);

@@ -7,6 +7,6 @@
 position = Vector2(12, 12)
 texture = ExtResource("1_h8oj0")
 script = ExtResource("2_8tnqa")
+Nome = "Bala de Chumbo"
+"Descrição" = "+ 0.5 de dano"
 cost = 2
-Nome = "Bala de Chumbo (2)"
-"Descrição" = "+ 1 de dano"

@@ -14,10 +14,10 @@ public partial class KnifesPath : Path2D
                 t.Start(3);
                 h.tocou = 2;
                 i.Visible = false;
-                i.ProcessMode = ProcessModeEnum.Disabled;
+                h.Monitoring = false;
             } else if (h.tocou == 2 && t.TimeLeft == 0)
             {
-                i.ProcessMode = ProcessModeEnum.Inherit;
+                h.Monitoring = true;
                 i.Visible = true;
                 h.tocou = 0;
             }

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqehx1meh4o7d"
-path="res://.godot/imported/Walking2.png-c3b512f40e0905da65bf01d0bf47ce03.ctex"
+uid="uid://622xei40f8an"
+path="res://.godot/imported/Bala magica.png-61795e5e03beb4b0b15b8f162e615268.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/personagens/Walking2.png"
-dest_files=["res://.godot/imported/Walking2.png-c3b512f40e0905da65bf01d0bf47ce03.ctex"]
+source_file="res://Sprites/balas/Bala magica.png"
+dest_files=["res://.godot/imported/Bala magica.png-61795e5e03beb4b0b15b8f162e615268.ctex"]
 
 [params]
 

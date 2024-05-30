@@ -14,7 +14,6 @@ public partial class HealthComponent : Node2D
     public delegate void DeadEventHandler();
     [Export]
     public double health;
-    [Export]
     public double HitX = 1;
 
     public override void _Ready()

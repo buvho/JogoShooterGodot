@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://d06h6tjhpcfw7"]
 
-[ext_resource type="PackedScene" uid="uid://piag05lbnleh" path="res://Components/BulletComponent.tscn" id="2_e4mao"]
+[ext_resource type="Script" path="res://Cenas/Bullets/Bullet.cs" id="1_leo1g"]
 [ext_resource type="Texture2D" uid="uid://ckkc02476meqr" path="res://Sprites/balas/greenbullet.png" id="2_ud158"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pavrw"]
@@ -26,17 +26,18 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1lb5"]
-radius = 12.0
+radius = 18.8571
+height = 62.5714
 
 [node name="VerdiBullet" type="Area2D"]
 scale = Vector2(1.75, 1.75)
 collision_layer = 8
 collision_mask = 27
-
-[node name="BulletComponet" parent="." instance=ExtResource("2_e4mao")]
-speed = 600
-damage = 1.0
+script = ExtResource("1_leo1g")
+speed = 800
 knock = 0.0
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -45,8 +46,9 @@ sprite_frames = SubResource("SpriteFrames_58nb1")
 frame_progress = 0.392721
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(-2.38419e-07, -2.85714)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o1lb5")
 
-[connection signal="body_entered" from="." to="BulletComponet" method="OnBody"]
+[connection signal="body_entered" from="." to="." method="OnBody"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeout"]

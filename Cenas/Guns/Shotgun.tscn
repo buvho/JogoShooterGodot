@@ -28,13 +28,13 @@ region = Rect2(180, 0, 45, 16)
 [sub_resource type="SpriteFrames" id="SpriteFrames_imtv3"]
 animations = [{
 "frames": [{
-"duration": 0.8,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0nven")
 }, {
-"duration": 0.8,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_0udqw")
 }, {
-"duration": 0.8,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cpb53")
 }, {
 "duration": 1.0,
@@ -42,6 +42,9 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a761x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whkfv")
 }],
 "loop": false,
 "name": &"atira",
@@ -50,8 +53,8 @@ animations = [{
 
 [node name="Shotgun" type="AnimatedSprite2D"]
 texture_filter = 1
-position = Vector2(0, 1)
-scale = Vector2(0.5, 0.5)
+position = Vector2(3, 1)
+scale = Vector2(0.6, 0.6)
 sprite_frames = SubResource("SpriteFrames_imtv3")
 animation = &"atira"
 frame_progress = 1.0

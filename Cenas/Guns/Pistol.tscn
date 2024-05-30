@@ -36,7 +36,7 @@ animations = [{
 
 [node name="Pistol" type="AnimatedSprite2D"]
 texture_filter = 1
-position = Vector2(-1.42109e-14, 2)
+position = Vector2(-2, 1.19209e-07)
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_csewq")
 animation = &"atira"
@@ -44,7 +44,6 @@ flip_h = true
 script = ExtResource("3_qnpp7")
 DefautBullet = ExtResource("4_ctipq")
 Cooldown = 0.4
-auto = true
 itemTexture = ExtResource("4_py8ng")
 Nome = "Pistola"
 "Descrição" = "arma inicial, da 1 de dano"

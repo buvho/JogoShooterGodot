@@ -1,29 +1,32 @@
 [gd_scene load_steps=4 format=3 uid="uid://ch2t0fgkimgdj"]
 
+[ext_resource type="Script" path="res://Cenas/Bullets/Bullet.cs" id="1_64snh"]
 [ext_resource type="Texture2D" uid="uid://cfiata6jkq6ao" path="res://Sprites/balas/BalaRoxu.png" id="2_1h4cu"]
-[ext_resource type="PackedScene" uid="uid://piag05lbnleh" path="res://Components/BulletComponent.tscn" id="2_hhv82"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1lb5"]
-radius = 12.0
+radius = 17.1429
+height = 45.7143
 
 [node name="RoxuBullet" type="Area2D"]
 scale = Vector2(1.75, 1.75)
 collision_layer = 8
 collision_mask = 27
-
-[node name="BulletComponet" parent="." instance=ExtResource("2_hhv82")]
+script = ExtResource("1_64snh")
 speed = 800
-damage = 1.0
 knock = 0.0
+
+[node name="Timer" type="Timer" parent="."]
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(6, 6)
+position = Vector2(0, 0.857142)
+scale = Vector2(6, 5.89286)
 texture = ExtResource("2_1h4cu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 0)
+position = Vector2(-1.14286, 0.571429)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o1lb5")
 
-[connection signal="body_entered" from="." to="BulletComponet" method="OnBody"]
+[connection signal="body_entered" from="." to="." method="OnBody"]
+[connection signal="timeout" from="Timer" to="." method="OnTimeout"]

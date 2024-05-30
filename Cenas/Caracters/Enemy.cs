@@ -39,11 +39,11 @@ public partial class Enemy : CharacterBody2D
         var PlayerAng = (GlobalPosition - playe.GlobalPosition).Angle();
         if (PlayerAng > -1.5708 && PlayerAng < 1.5708) 
         {
-        sprite.Scale = new Vector2(1,1);
+        sprite.Scale = new Vector2(0.7f,0.7f);
         }
         else 
         {
-        sprite.Scale = new Vector2(-1,1);
+        sprite.Scale = new Vector2(-0.7f,0.7f);
         }
     }
     public void TryShoot()

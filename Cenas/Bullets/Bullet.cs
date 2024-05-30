@@ -1,14 +1,13 @@
 using Godot;
-public partial class BulletComponent : Node2D
+public partial class Bullet : Area2D
 {
-     [Export]
-    public int speed;
+    [Export]
+    public float speed;
     [Export]
     public double damage = 1;
     [Export]
     public float knock = 1000;
     public float Durantion;
-    Area2D dad;
     
     Vector2 direction = new Vector2();
 
@@ -18,13 +17,12 @@ public partial class BulletComponent : Node2D
     }
     public override void _Process(double delta)
     {
-        Area2D dad = GetParent<Area2D>();
-        dad.GlobalRotation = GlobalRotation;
-        dad.Position += dad.Transform.X.Normalized() * -speed * (float)delta;
+        GlobalRotation = GlobalRotation;
+        Position += Transform.X.Normalized() * -speed * (float)delta;
     }
     private void OnBody(Node2D body)
     {
-        GetParent().QueueFree();
+        QueueFree();
         if (body is CharacterBody2D)
         {
             body.GetNode<HealthComponent>("HealthComponent").Hit(damage);
@@ -36,6 +34,6 @@ public partial class BulletComponent : Node2D
     }
     private void OnTimeout()
     {
-        GetParent().QueueFree();
+        QueueFree();
     }
 }

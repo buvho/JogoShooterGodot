@@ -1,36 +1,93 @@
-[gd_scene load_steps=10 format=3 uid="uid://deb7ss0kdri1i"]
+[gd_scene load_steps=19 format=3 uid="uid://deb7ss0kdri1i"]
 
-[ext_resource type="Texture2D" uid="uid://qbwwocf2jswo" path="res://Sprites/personagens/pixilart-sprite(1).png" id="1_ervuo"]
 [ext_resource type="Script" path="res://Cenas/Caracters/Roxu.cs" id="1_h3yki"]
 [ext_resource type="PackedScene" uid="uid://daprrbuquuhvl" path="res://Cenas/Guns/Shotgun.tscn" id="2_k0xmv"]
 [ext_resource type="PackedScene" uid="uid://ch2t0fgkimgdj" path="res://Cenas/Bullets/RoxuBullet.tscn" id="2_nf2u3"]
 [ext_resource type="PackedScene" uid="uid://bq58tcpxqb1vh" path="res://Components/HealthComponent.tscn" id="3_pfyny"]
+[ext_resource type="Texture2D" uid="uid://dooduufb8lho7" path="res://Sprites/personagens/roxuwalk.png" id="3_t4ara"]
+[ext_resource type="Texture2D" uid="uid://bk7gpl38txn7x" path="res://Sprites/etc/sombra.png" id="6_a2h8x"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0htkc"]
-atlas = ExtResource("1_ervuo")
-region = Rect2(0, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6s8yq"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(0, 0, 24, 24)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_15lp4"]
-atlas = ExtResource("1_ervuo")
-region = Rect2(16, 0, 16, 16)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l5of"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qr2gy"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfoof"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0quah"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c1twb"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y2dce"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d0ibg"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r05la"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5lk5b"]
+atlas = ExtResource("3_t4ara")
+region = Rect2(216, 0, 24, 24)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o5e4w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0htkc")
+"texture": SubResource("AtlasTexture_6s8yq")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_15lp4")
+"texture": SubResource("AtlasTexture_6l5of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qr2gy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfoof")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0quah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c1twb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y2dce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d0ibg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r05la")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5lk5b")
 }],
 "loop": true,
 "name": &"new_animation",
-"speed": 5.0
+"speed": 7.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1xhc"]
-radius = 6.0
-height = 14.0
+radius = 4.66667
+height = 12.6667
 
 [node name="Roxu" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -54,19 +111,28 @@ collide_with_areas = true
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_o5e4w")
 animation = &"new_animation"
+frame_progress = 0.0883775
+flip_h = true
 
 [node name="Shotgun" parent="Sprite" instance=ExtResource("2_k0xmv")]
+position = Vector2(-4.66667, 2.66667)
 frame_progress = 0.0
 D = 3.0
 Cooldown = 1.5
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_k1xhc")
 
 [node name="HealthComponent" parent="." instance=ExtResource("3_pfyny")]
 health = 5.0
+
+[node name="Sombra" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(-2.98023e-08, 6)
+scale = Vector2(-0.206712, 0.287403)
+texture = ExtResource("6_a2h8x")
 
 [connection signal="Dead" from="HealthComponent" to="." method="Dead"]
