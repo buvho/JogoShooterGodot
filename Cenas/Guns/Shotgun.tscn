@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://daprrbuquuhvl"]
+[gd_scene load_steps=10 format=3 uid="uid://daprrbuquuhvl"]
 
 [ext_resource type="Texture2D" uid="uid://c0homxqlyxj25" path="res://Sprites/armas/Shotgunshoots.png" id="1_q6hjd"]
 [ext_resource type="Script" path="res://Cenas/Guns/Shotgun.cs" id="2_u2bba"]
-[ext_resource type="PackedScene" uid="uid://ccnqp2381kbap" path="res://Cenas/Bullets/Bullet.tscn" id="3_m8b8q"]
-[ext_resource type="Texture2D" uid="uid://cfbiph8jh3ox1" path="res://Sprites/armas/Shotgunitem.png" id="4_gr5qk"]
+[ext_resource type="PackedScene" uid="uid://dg0pxrlcyup7i" path="res://Cenas/Bullets/bullet.tscn" id="3_n0k31"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0nven"]
 atlas = ExtResource("1_q6hjd")
@@ -60,11 +59,16 @@ animation = &"atira"
 frame_progress = 1.0
 flip_h = true
 script = ExtResource("2_u2bba")
-DefautBullet = ExtResource("3_m8b8q")
+DefautBullet = ExtResource("3_n0k31")
+damage = 0.8
+speed = 1200.0
+Durantion = 0.8
+knockback = 20.0
 Cooldown = 0.7
-itemTexture = ExtResource("4_gr5qk")
+inacurace = 0.1
 Nome = "Boomstick"
 "Descrição" = "dispara 3 tiros de uma vez, cada um dá 3 de dano"
+cost = 3
 
 [node name="BP" type="Node2D" parent="."]
 position = Vector2(-15.7368, -2.417)

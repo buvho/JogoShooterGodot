@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://eitflb3130tu"]
 
 [ext_resource type="Texture2D" uid="uid://dgalhgyo36aep" path="res://Sprites/Props/bau.png" id="1_1vjan"]
-[ext_resource type="Script" path="res://Etc/Chest.cs" id="1_jifto"]
+[ext_resource type="Script" path="res://Cenas/props/Chest.cs" id="1_jifto"]
 [ext_resource type="Texture2D" uid="uid://m0kdavhg2s7t" path="res://Sprites/Props/plataforma bau.png" id="2_uejf0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_beou7"]

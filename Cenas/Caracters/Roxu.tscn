@@ -1,11 +1,17 @@
-[gd_scene load_steps=19 format=3 uid="uid://deb7ss0kdri1i"]
+[gd_scene load_steps=24 format=3 uid="uid://deb7ss0kdri1i"]
 
 [ext_resource type="Script" path="res://Cenas/Caracters/Roxu.cs" id="1_h3yki"]
 [ext_resource type="PackedScene" uid="uid://daprrbuquuhvl" path="res://Cenas/Guns/Shotgun.tscn" id="2_k0xmv"]
 [ext_resource type="PackedScene" uid="uid://ch2t0fgkimgdj" path="res://Cenas/Bullets/RoxuBullet.tscn" id="2_nf2u3"]
+[ext_resource type="Shader" path="res://Cenas/Caracters/Flash.gdshader" id="3_d4pta"]
 [ext_resource type="PackedScene" uid="uid://bq58tcpxqb1vh" path="res://Components/HealthComponent.tscn" id="3_pfyny"]
 [ext_resource type="Texture2D" uid="uid://dooduufb8lho7" path="res://Sprites/personagens/roxuwalk.png" id="3_t4ara"]
 [ext_resource type="Texture2D" uid="uid://bk7gpl38txn7x" path="res://Sprites/etc/sombra.png" id="6_a2h8x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s41mj"]
+resource_local_to_scene = true
+shader = ExtResource("3_d4pta")
+shader_parameter/hit = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6s8yq"]
 atlas = ExtResource("3_t4ara")
@@ -86,31 +92,67 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k1xhc"]
-radius = 4.66667
+radius = 6.0
 height = 12.6667
+
+[sub_resource type="Animation" id="Animation_mfy0e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_btyu2"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r80s5"]
+_data = {
+"RESET": SubResource("Animation_mfy0e"),
+"flash": SubResource("Animation_btyu2")
+}
 
 [node name="Roxu" type="CharacterBody2D"]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
-collision_mask = 19
+collision_mask = 22
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_h3yki")
 speed = 750.0
 Weight = 0.5
-ShootRange = 200
-Range = 250
-bulletsc = ExtResource("2_nf2u3")
+AtackRange = 500.0
+AntiRange = 40.0
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_pfyny")]
+health = 5.0
 
 [node name="Nav" type="NavigationAgent2D" parent="."]
-
-[node name="RayCast" type="RayCast2D" parent="."]
-target_position = Vector2(0, 0)
-collision_mask = 16777215
-collide_with_areas = true
+radius = 8.0
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_s41mj")
 scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_o5e4w")
 animation = &"new_animation"
@@ -120,14 +162,28 @@ flip_h = true
 [node name="Shotgun" parent="Sprite" instance=ExtResource("2_k0xmv")]
 position = Vector2(-4.66667, 2.66667)
 frame_progress = 0.0
-D = 3.0
+D = 5.0
+DefautBullet = ExtResource("2_nf2u3")
+damage = 1.0
+speed = 500.0
+Durantion = 1.2
 Cooldown = 1.5
+inacurace = 0.2
+
+[node name="RayCast" type="RayCast2D" parent="Sprite"]
+position = Vector2(-14.2857, 0.952381)
+scale = Vector2(1.42857, 1.42857)
+target_position = Vector2(0, 0)
+collision_mask = 16777215
+collide_with_areas = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_k1xhc")
 
-[node name="HealthComponent" parent="." instance=ExtResource("3_pfyny")]
-health = 5.0
+[node name="Flash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r80s5")
+}
 
 [node name="Sombra" type="Sprite2D" parent="."]
 z_index = -1

@@ -9,7 +9,7 @@ public partial class HealthComponent : Node2D
 {
     
     [Signal]
-    public delegate void HealthChangedEventHandler();
+    public delegate void HealthChangedEventHandler(bool dmg);
     [Signal]
     public delegate void DeadEventHandler();
     [Export]
@@ -23,16 +23,17 @@ public partial class HealthComponent : Node2D
     public void Heal(double heal)
         {
         health += heal;
-        EmitSignal(SignalName.HealthChanged);
+        EmitSignal(SignalName.HealthChanged, false);
         }
-        public void Hit(double damage)
+    public void Hit(double damage)
         { 
         health -= damage * HitX;
-        EmitSignal(SignalName.HealthChanged);
-        if (health <= 0)
+        EmitSignal(SignalName.HealthChanged, true);
+        GetParent().GetNode<AnimationPlayer>("Flash").Play("flash");
+        if (health <= 0 && GetParent() is not Player)
         {
-
             GetParent().GetNode<AnimatedSprite2D>("Sprite").Visible = false;
+            GetParent().GetNode<Sprite2D>("Sombra").QueueFree();
             GetParent().GetNode<CollisionShape2D>("Collision").QueueFree();
             GetNode<CpuParticles2D>("Particles").Emitting = true;
             EmitSignal(SignalName.Dead);

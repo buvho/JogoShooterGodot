@@ -94,6 +94,7 @@ pause={
 2d_physics/layer_3="inimigo"
 2d_physics/layer_4="bala do inimigo"
 2d_physics/layer_5="parede"
+2d_physics/layer_6="Item"
 
 [rendering]
 

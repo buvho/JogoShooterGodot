@@ -1,18 +1,28 @@
-[gd_scene load_steps=3 format=3 uid="uid://ct4qvtsey2aqe"]
+[gd_scene load_steps=5 format=3 uid="uid://ct4qvtsey2aqe"]
 
 [ext_resource type="Texture2D" uid="uid://tnut3bsg4ggk" path="res://Sprites/etc/Placeholder.png" id="1_no0hy"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_lieoe"]
+polygon = PackedVector2Array(-45, -3, 45, -2, 45, 2, -45, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d2f7r"]
 size = Vector2(76.25, 4)
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8l0t2"]
+polygon = PackedVector2Array(30, -14, 26, -14, 26, -104, 30, -104)
+
 [node name="Portas" type="Node2D"]
+unique_name_in_owner = true
 process_mode = 4
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(250, 503)
+position = Vector2(248, 500)
 collision_layer = 16
 collision_mask = 63
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="StaticBody2D"]
+occluder = SubResource("OccluderPolygon2D_lieoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
 texture = ExtResource("1_no0hy")
@@ -20,25 +30,38 @@ texture = ExtResource("1_no0hy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_d2f7r")
+one_way_collision = true
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(493, 251)
+position = Vector2(500, 251)
 rotation = 1.5708
 collision_layer = 16
 collision_mask = 31
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="StaticBody2D2"]
+position = Vector2(59.0001, 28.9998)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_8l0t2")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
 texture = ExtResource("1_no0hy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-10.25, 0)
+rotation = 3.14159
 shape = SubResource("RectangleShape2D_d2f7r")
+one_way_collision = true
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(4, 253)
+position = Vector2(0, 251)
 rotation = 1.5708
 collision_layer = 16
 collision_mask = 31
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="StaticBody2D3"]
+position = Vector2(59.0001, 27.9998)
+rotation = -1.5708
+occluder = SubResource("OccluderPolygon2D_8l0t2")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
 texture = ExtResource("1_no0hy")
@@ -46,11 +69,16 @@ texture = ExtResource("1_no0hy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
 position = Vector2(-5.875, 1.90735e-06)
 shape = SubResource("RectangleShape2D_d2f7r")
+one_way_collision = true
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(249, 3)
+position = Vector2(248, -10)
 collision_layer = 16
 collision_mask = 31
+
+[node name="LightOccluder2D4" type="LightOccluder2D" parent="StaticBody2D4"]
+position = Vector2(-3, 0)
+occluder = SubResource("OccluderPolygon2D_lieoe")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
 position = Vector2(-1.00001, 0)
@@ -59,4 +87,6 @@ texture = ExtResource("1_no0hy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
 position = Vector2(-1, 0)
+rotation = 3.14159
 shape = SubResource("RectangleShape2D_d2f7r")
+one_way_collision = true

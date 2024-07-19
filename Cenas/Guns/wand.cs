@@ -6,6 +6,6 @@ public partial class wand : Gun
     public override void berravior(PackedScene bulletsc)
     {
         Starter(Cooldown);
-        ShootBullet(bulletsc,1,0.1);
+        ShootBullet(bulletsc);
     }
 }

@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using System.Collections.Generic;
 public partial class Player : CharacterBody2D
 {
@@ -7,9 +8,10 @@ public partial class Player : CharacterBody2D
     public bool DashEnabled = true;
     public bool MousePressed = false;
     public int onHand = 0;
+    double imunity = 0.5; 
 
     //atributos
-    public int VelConst = 650;
+    public int VelConst = 600;
     public double damP = 0;
     public double damX = 1;
     public double maxhealth = 6;
@@ -41,22 +43,27 @@ public partial class Player : CharacterBody2D
     public override void _Process(double delta)
     {
         arma = GetNode("Sprite/Hand").GetChild<Gun>(0);
-        
+        if (imunity > 0)
+        {
+        imunity -= delta;
+        }
         //movimento
         var sprite = GetNode<AnimatedSprite2D>("Sprite");
         Vector2 mov = Input.GetVector("left","right","up","down") * VelConst;
-        sprite.SpeedScale = VelConst / 650;
+        sprite.SpeedScale = VelConst / 600;
 
         if (Input.IsActionJustPressed("Dash") && DashEnabled == true)
         {
-            Dash = mov.Normalized() * 200000;
+            Dash += mov.Normalized() * 170000;
+            Dash.Lerp(Vector2.Zero,1);
             DashEnabled = false;
-            GetNode<Timer>("DashTimer").Start(0.1);
         }
-        
+        if (Dash.Length() > 7000){
+        Dash -= new Vector2(Dash.X * 4,Dash.Y * 4) * (float)delta;
+        GetNode<Timer>("DashTimer").Start(0.1);
+        } else {Dash = Vector2.Zero;}
 		Velocity = mov + (Dash * (float)delta);
 		MoveAndSlide();
-
 
         float scl = 0.8f;
         if (mov == Vector2.Zero)
@@ -149,25 +156,29 @@ public partial class Player : CharacterBody2D
     }
     private void DashTimeOut()
     {
-        if (Dash != new Vector2(0,0))   
-        {
-            Dash = new Vector2(0,0);
-            GetNode<Timer>("DashTimer").Start(0.5);
-        }
-        else if (DashEnabled == false)
+        if (DashEnabled == false)
         {
             DashEnabled = true;
         }
 
     }
-    private void HealthChanged()
+    private void HealthChanged(bool dmg)
     {
-        double vida = GetNode<HealthComponent>("HealthComponent").health;
-        EmitSignal(SignalName.VidaUI, vida);
+        if (dmg) {
+            if (imunity > 0)
+            {
+            GetNode<HealthComponent>("HealthComponent").health += 1;
+            } else {
+            imunity = 1;
+            }
+        }
+    double vida = GetNode<HealthComponent>("HealthComponent").health;
+    EmitSignal(SignalName.VidaUI, vida);
     }
     public void Change(int id)
     {
-
+        Texture gun0 = ((Gun)guns[0].Instantiate()).SpriteFrames.GetFrameTexture("atira", 0);
+        Texture gun1 = ((Gun)guns[1].Instantiate()).SpriteFrames.GetFrameTexture("atira", 0);
         foreach (Node2D i in GetNode<Node2D>("Sprite/Hand").GetChildren())
         {
             i.QueueFree();
@@ -179,13 +190,14 @@ public partial class Player : CharacterBody2D
         
         if (onHand == 0)
         {
-            EmitSignal(SignalName.ArmaUI, ((Gun)guns[0].Instantiate()).itemTexture, ((Gun)guns[1].Instantiate()).itemTexture);
+            EmitSignal(SignalName.ArmaUI, gun0, gun1);
         }
         else 
         {
-            EmitSignal(SignalName.ArmaUI, ((Gun)guns[1].Instantiate()).itemTexture, ((Gun)guns[0].Instantiate()).itemTexture);
+            EmitSignal(SignalName.ArmaUI, gun1, gun0);
         }
     }
+
     public void CoinChange(int amount)
     {
         coins += amount;

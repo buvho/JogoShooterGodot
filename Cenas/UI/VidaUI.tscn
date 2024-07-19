@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://bd13qmk30gbkf"]
 
 [ext_resource type="Script" path="res://Cenas/UI/VidaUI.cs" id="1_272w8"]
-[ext_resource type="Texture2D" uid="uid://bnwwhqv3jm3ay" path="res://Sprites/UI/pixil-frame-0(1).png" id="1_g6203"]
-[ext_resource type="Texture2D" uid="uid://bef74wmxdd45x" path="res://Sprites/UI/pixil-frame-0(3).png" id="2_uepmv"]
+[ext_resource type="Texture2D" uid="uid://b6enmuvl8aiio" path="res://Sprites/UI/image2.png" id="2_msd5x"]
+[ext_resource type="Texture2D" uid="uid://dy135pnhbf61o" path="res://Sprites/UI/image.png" id="3_sfgsy"]
 
 [node name="VidaUI" type="CanvasLayer"]
 script = ExtResource("1_272w8")
@@ -15,19 +15,19 @@ anchors_preset = 0
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 0
-offset_right = 54.0
-offset_bottom = 16.0
-scale = Vector2(5, 5)
-texture = ExtResource("2_uepmv")
+offset_right = 77.0
+offset_bottom = 24.0
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_msd5x")
 stretch_mode = 1
 
 [node name="Cora" type="TextureRect" parent="Canvas"]
 unique_name_in_owner = true
 texture_filter = 1
 layout_mode = 1
-offset_right = 54.0
-offset_bottom = 16.0
-scale = Vector2(5, 5)
-texture = ExtResource("1_g6203")
+offset_right = 77.0
+offset_bottom = 24.0
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("3_sfgsy")
 expand_mode = 1
 stretch_mode = 1

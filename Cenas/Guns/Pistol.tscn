@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcvfi8hf1jk0l"]
+[gd_scene load_steps=8 format=3 uid="uid://dcvfi8hf1jk0l"]
 
 [ext_resource type="Texture2D" uid="uid://cagprpw2aw18q" path="res://Sprites/armas/atirar.png" id="1_mcppr"]
+[ext_resource type="PackedScene" uid="uid://dg0pxrlcyup7i" path="res://Cenas/Bullets/bullet.tscn" id="3_c278g"]
 [ext_resource type="Script" path="res://Cenas/Guns/Pistol.cs" id="3_qnpp7"]
-[ext_resource type="PackedScene" uid="uid://ccnqp2381kbap" path="res://Cenas/Bullets/Bullet.tscn" id="4_ctipq"]
-[ext_resource type="Texture2D" uid="uid://35lfc14s5y7l" path="res://Sprites/armas/pixil-frame-0.png" id="4_py8ng"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxy8o"]
 atlas = ExtResource("1_mcppr")
@@ -42,9 +41,13 @@ sprite_frames = SubResource("SpriteFrames_csewq")
 animation = &"atira"
 flip_h = true
 script = ExtResource("3_qnpp7")
-DefautBullet = ExtResource("4_ctipq")
+DefautBullet = ExtResource("3_c278g")
+damage = 1.0
+speed = 1400.0
+Durantion = 1.0
+knockback = 20.0
 Cooldown = 0.4
-itemTexture = ExtResource("4_py8ng")
+inacurace = 0.1
 Nome = "Pistola"
 "Descrição" = "arma inicial, da 1 de dano"
 

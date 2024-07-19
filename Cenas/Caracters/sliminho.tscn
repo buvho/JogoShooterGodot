@@ -1,0 +1,167 @@
+[gd_scene load_steps=19 format=3 uid="uid://cr6of1es5e8aa"]
+
+[ext_resource type="Script" path="res://Cenas/Caracters/Sliminho.cs" id="1_csx1d"]
+[ext_resource type="PackedScene" uid="uid://bq58tcpxqb1vh" path="res://Components/HealthComponent.tscn" id="2_jjjs2"]
+[ext_resource type="Texture2D" uid="uid://b58r6oq2brjm6" path="res://Sprites/personagens/slimepequeno.png" id="3_3p652"]
+[ext_resource type="Shader" path="res://Cenas/Caracters/Flash.gdshader" id="3_6380l"]
+[ext_resource type="Texture2D" uid="uid://bk7gpl38txn7x" path="res://Sprites/etc/sombra.png" id="5_sreu4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ttp7h"]
+radius = 3.33328
+height = 10.6667
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g3k56"]
+resource_local_to_scene = true
+shader = ExtResource("3_6380l")
+shader_parameter/hit = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_far8f"]
+atlas = ExtResource("3_3p652")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fg06g"]
+atlas = ExtResource("3_3p652")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tgdoo"]
+atlas = ExtResource("3_3p652")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16tpm"]
+atlas = ExtResource("3_3p652")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhxm6"]
+atlas = ExtResource("3_3p652")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vr12g"]
+atlas = ExtResource("3_3p652")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_grsmc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_far8f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fg06g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tgdoo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16tpm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhxm6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vr12g")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbw05"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="Animation" id="Animation_mfy0e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_btyu2"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r80s5"]
+_data = {
+"RESET": SubResource("Animation_mfy0e"),
+"flash": SubResource("Animation_btyu2")
+}
+
+[node name="Sliminho" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 22
+motion_mode = 1
+wall_min_slide_angle = 0.0
+platform_floor_layers = 4294967151
+platform_wall_layers = 19
+script = ExtResource("1_csx1d")
+speed = 2000.0
+Weight = 0.8
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_jjjs2")]
+health = 2.0
+
+[node name="Nav" type="NavigationAgent2D" parent="."]
+radius = 5.0
+debug_enabled = true
+debug_path_custom_color = Color(0.914606, 4.71681e-06, 9.62615e-07, 1)
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.66667)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ttp7h")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_g3k56")
+position = Vector2(0, -10.6667)
+sprite_frames = SubResource("SpriteFrames_grsmc")
+frame_progress = 0.550452
+
+[node name="RayCast" type="RayCast2D" parent="Sprite"]
+position = Vector2(-9.53674e-07, 4.44444)
+scale = Vector2(0.7, 0.7)
+target_position = Vector2(-1.36239e-06, 0)
+collision_mask = 16777215
+collide_with_areas = true
+
+[node name="Sombra" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(0, -4)
+scale = Vector2(-0.244605, 0.217632)
+texture = ExtResource("5_sreu4")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -1.11111)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(6.0633e-13, -1.55556)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xbw05")
+
+[node name="Flash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r80s5")
+}
+
+[connection signal="Dead" from="HealthComponent" to="." method="Dead"]
+[connection signal="body_entered" from="HitBox" to="." method="OnBody"]

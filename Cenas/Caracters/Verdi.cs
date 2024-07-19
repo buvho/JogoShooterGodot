@@ -1,23 +1,12 @@
 using Godot;
 using System;
 
-public partial class Verdi : Enemy
+public partial class Verdi : ShootingEnemy
 {
-    bool alive = true;
-    public override void _Process(double delta)
+    public override void Tick(double delta)
     {
-        if (alive)
-        {
-            Erotation();
-            MoveToPlayer();
-            TryShoot();
-            Move(delta);
-        } 
-        
-    }
-    public void Dead()
-    {
-        alive = false;
-        SimpleLoot();
+        MoveToPlayer();
+        TryShoot();
+        Move(delta);
     }
 }

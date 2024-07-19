@@ -1,40 +1,58 @@
 using Godot;
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 
 
 public partial class Enemy : CharacterBody2D
 {
     [Export]
-    float speed;
+    public float speed;
     [Export]
     float Weight;
     [Export]
-    int ShootRange;
+    public float AtackRange;
     [Export]
-    public int Range;
-    [Export]   
-    PackedScene bulletsc;
-
+    public float AntiRange;
+    public bool alive = true;
     public Vector2 mov;
     public Vector2 knock = new();
     public Player playe;
-    CharacterBody2D it;
-    AnimatedSprite2D sprite;
+    public AnimatedSprite2D sprite;
     public RayCast2D raycast;
     public PackedScene healSC;
     public PackedScene coinSC;
 
+    public virtual void Tick(double delta){}
+    public virtual void Tack(){}
+    public virtual void Ded(){}
+
+    public override void _Process(double delta)
+    {
+        if (alive){
+        Tick(delta);
+        }
+        float knocke = Math.Abs(knock.X) + Math.Abs(knock.Y);
+        if (knocke >= 0)
+        { 
+            knock *= Weight;
+            knock = knocke < 0.1 ? Vector2.Zero : knock;
+        }
+    }
     public override void _Ready()
     {
         playe = GetTree().Root.GetNode("World").GetNode<Player>("Player");
         sprite = GetNode<AnimatedSprite2D>("Sprite");
-        raycast = GetNode<RayCast2D>("RayCast");
+        raycast = GetNode<RayCast2D>("Sprite/RayCast");
         coinSC = (PackedScene)GD.Load("res://Etc/Coin.tscn");
         healSC = (PackedScene)GD.Load("res://Etc/Heal.tscn");
+        speed *= (float)new Random().Next(80,120) / 100;
+        AtackRange *= (float)new Random().Next(80,120) / 100;
+        AntiRange *= (float)new Random().Next(80,120) / 100;
+        Tack();
     }
 
-    public void Erotation()
+    public bool MoveToPlayer()
     {
         var PlayerAng = (GlobalPosition - playe.GlobalPosition).Angle();
         if (PlayerAng > -1.5708 && PlayerAng < 1.5708) 
@@ -45,30 +63,19 @@ public partial class Enemy : CharacterBody2D
         {
         sprite.Scale = new Vector2(-0.7f,0.7f);
         }
-    }
-    public void TryShoot()
-    {
-        if ((playe.GlobalPosition - GlobalPosition).Length() <= ShootRange * 10)
-        {
-            if (raycast.GetCollider() == playe)
-            {
-                sprite.GetChild<Gun>(0).Target(playe.GlobalPosition);
-                sprite.GetChild<Gun>(0).Shoot(bulletsc);
-            }
-        }
-    }
-    public void MoveToPlayer()
-    {
-        raycast.TargetPosition = ToLocal(playe.GlobalPosition);
-        if ((playe.GlobalPosition - GlobalPosition).Length() <= Range * 10)
+
+        raycast.TargetPosition = raycast.ToLocal(playe.GlobalPosition);
+        if ((playe.GlobalPosition - GlobalPosition).Length() >= AntiRange * 10 || raycast.GetCollider() is not Player)
         {
         GetNode<NavigationAgent2D>("Nav").TargetPosition = playe.GlobalPosition;
         var direction = ToLocal(GetNode<NavigationAgent2D>("Nav").GetNextPathPosition()).Normalized();
         mov = direction * speed * 10;
+        return true;
         }
         else
         {
             mov = Vector2.Zero;
+            return false;
         }
     }
 
@@ -78,45 +85,30 @@ public partial class Enemy : CharacterBody2D
     }
     public void Move(double delta)
     {
-        float knocke = Math.Abs(knock.X) + Math.Abs(knock.Y);
-        if (knocke >= 0)
-        { 
-            knock *= Weight;
-            knock = knocke < 0.1 ? Vector2.Zero : knock;
-        }
         Velocity = (mov + knock) * (float)delta;
         if (Velocity != Vector2.Zero){sprite.Play();}else{sprite.Stop();}
         MoveAndSlide();
     }
 
+    public void Dead()
+    {
+        alive = false;
+        SimpleLoot();
+        Ded();
+    }
+
     public void SimpleLoot()
     {
-        Random RNG = new Random();
+        Random RNG = new();
         int n = RNG.Next(1,11) + playe.coinL;
         int m = 11;
         int v = -10;
-
-        if (n >= 10)
-        //GlobalPosition + new Vector2(RNG.Next(-40,40),RNG.Next(-40,40));
-        {
+        while (n > 3){
             Coin coinz = (Coin)coinSC.Instantiate();
             CallDeferred(Node2D.MethodName.AddSibling, coinz);
             coinz.SetDeferred("position",Position + new Vector2(RNG.Next(v,m),RNG.Next(v,m)));
+            n -= 3;
         }
-        if (n >= 7)
-        {
-            Coin coinz = (Coin)coinSC.Instantiate();
-            CallDeferred(Node2D.MethodName.AddSibling, coinz);
-            coinz.SetDeferred("position",Position + new Vector2(RNG.Next(v,m),RNG.Next(v,m)));
-        }
-        if (n >= 4)
-        {
-            Coin coinz = (Coin)coinSC.Instantiate();
-            CallDeferred(Node2D.MethodName.AddSibling, coinz);
-            coinz.SetDeferred("position",Position + new Vector2(RNG.Next(v,m),RNG.Next(v,m)));
-        }
-
-
 
         n = RNG.Next(1,11);
         if (n == 10)

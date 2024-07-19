@@ -2,12 +2,13 @@ using Godot;
 public partial class Bullet : Area2D
 {
     [Export]
-    public float speed;
+    public float speed = 0;
     [Export]
-    public double damage = 1;
+    public double damage = 0;
     [Export]
-    public float knock = 1000;
-    public float Durantion;
+    public float knock;
+    [Export]
+    public float Durantion = 0;
     
     Vector2 direction = new Vector2();
 
@@ -17,7 +18,6 @@ public partial class Bullet : Area2D
     }
     public override void _Process(double delta)
     {
-        GlobalRotation = GlobalRotation;
         Position += Transform.X.Normalized() * -speed * (float)delta;
     }
     private void OnBody(Node2D body)

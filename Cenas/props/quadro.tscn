@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://k5eq0yn7nqhy"]
+
+[ext_resource type="Texture2D" uid="uid://c1vyp3us4g203" path="res://Sprites/Props/quadros.png" id="1_k2pqa"]
+[ext_resource type="Script" path="res://Cenas/props/Quadro.cs" id="2_ky11n"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Quadro" type="Sprite2D" parent="."]
+position = Vector2(2.84217e-14, -7)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_k2pqa")
+region_enabled = true
+region_rect = Rect2(0, 0, 17, 32)
+script = ExtResource("2_ky11n")

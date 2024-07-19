@@ -1,50 +1,29 @@
-[gd_scene load_steps=6 format=3 uid="uid://ccnqp2381kbap"]
+[gd_scene load_steps=4 format=3 uid="uid://dg0pxrlcyup7i"]
 
-[ext_resource type="Script" path="res://Cenas/Bullets/Bullet.cs" id="1_p47xo"]
-[ext_resource type="Texture2D" uid="uid://dng7lu16a27ov" path="res://Sprites/balas/Bala.png" id="2_e7eiw"]
+[ext_resource type="Script" path="res://Cenas/Bullets/Bullet.cs" id="1_tksjn"]
+[ext_resource type="Texture2D" uid="uid://bjn3wrc7vlrss" path="res://Sprites/balas/Bala,shotgun.png" id="2_hrrpk"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_w0a4t"]
-atlas = ExtResource("2_e7eiw")
-region = Rect2(0, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_g1a3d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_w0a4t")
-}],
-"loop": true,
-"name": &"default",
-"speed": 10.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bbyxx"]
-radius = 1.56863
-height = 4.62745
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1lb5"]
+radius = 3.0
+height = 8.0
 
 [node name="Bullet" type="Area2D"]
-light_mask = 2
-visibility_layer = 2
-scale = Vector2(2, 2)
+modulate = Color(50, 1, 1, 1)
+scale = Vector2(7, 7)
 collision_layer = 2
 collision_mask = 20
-script = ExtResource("1_p47xo")
-speed = 1500.0
-knock = 100.0
+script = ExtResource("1_tksjn")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-1.17647, 1.17647)
-scale = Vector2(2.73438, 2.47427)
-sprite_frames = SubResource("SpriteFrames_g1a3d")
+texture = ExtResource("2_hrrpk")
 
-[node name="collisão" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.40079e-13, -5.96046e-08)
 rotation = 1.5708
-scale = Vector2(6, 6)
-shape = SubResource("CapsuleShape2D_bbyxx")
+shape = SubResource("CapsuleShape2D_o1lb5")
 
 [connection signal="body_entered" from="." to="." method="OnBody"]
 [connection signal="timeout" from="Timer" to="." method="OnTimeout"]

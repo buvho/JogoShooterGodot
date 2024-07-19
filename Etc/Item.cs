@@ -1,35 +1,49 @@
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection;
+using System.Threading;
 using Godot;
 
 public partial class Item : Interactable
 {
     [Export] 
     public PackedScene item;
+    [Export]
+    public bool costy;
+    private int costw = 0;
     public bool IsGun = false;
     public override void _Ready()
     {
         Sprite2D s = GetNode<Sprite2D>("Sprite");
         GetNode<AnimationPlayer>("Animas").Play("Animas");
-        if (item.Instantiate() is Gun gun)
-        {
-            s.Texture = gun.itemTexture;
-            GetNode<Node2D>("Sprite").Scale = gun.Scale * (float)1.5;
-            IsGun = true;
-            GetNode<Label>("Panel/V/nome").Text = gun.Nome;
-            GetNode<Label>("Panel/V/descrição").Text = gun.Descrição;
-        }
-        else if (item.Instantiate() is Gear eq)
+        if (item.Instantiate() is Gear eq)
         {
             s.Texture = eq.Texture;
             GetNode<Label>("Panel/V/nome").Text = $"{eq.Nome} ({eq.cost})";
             GetNode<Label>("Panel/V/descrição").Text = eq.Descrição;
+            if (costy) Pricing(eq.cost);
+        }
+
+        else if (item.Instantiate() is Gun gun)
+        {
+            s.Texture = gun.SpriteFrames.GetFrameTexture("atira", 0);
+            GetNode<Node2D>("Sprite").Scale = gun.Scale * (float)1.5;
+            IsGun = true;
+            GetNode<Label>("Panel/V/nome").Text = gun.Nome;
+            GetNode<Label>("Panel/V/descrição").Text = gun.Descrição;
+            if (costy) Pricing(gun.cost);
         }
     }
     public override void OnE(Player p)
     {
-    if (IsGun)
+    if (costw <= p.coins)
+    {
+    p.CoinChange(-costw);
+    if (item.Instantiate() is Gun)
         {
         if(p.guns[1] == null)
         {
+            
             p.guns[1] = item;
             p.Change(1);
         }
@@ -43,11 +57,19 @@ public partial class Item : Interactable
             p.guns[p.onHand] = item;
             p.Change(p.onHand);
         }
-    } else 
+    } else if (item.Instantiate() is Gear gear)
     {
-        p.GetNode<Node>("inventario").AddChild((Gear)item.Instantiate());
+        p.GetNode<Node>("inventario").AddChild(gear);
     }
     QueueFree();
+    }
+    }
+
+    private void Pricing(int cost)
+    {
+        costw = new Random().Next(5,15) + (cost * new Random().Next(8,12));
+        GetNode<Control>("Price").Visible = true;
+        GetNode<Label>("Price/Hbox/Label").Text = costw.ToString();
     }
 
     public void Wee(Vector2 vector)

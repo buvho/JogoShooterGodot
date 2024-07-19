@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cooy2ddueyrxf"]
+[gd_scene load_steps=7 format=3 uid="uid://cooy2ddueyrxf"]
 
 [ext_resource type="Texture2D" uid="uid://bnb53r6s4gb5m" path="res://Sprites/armas/Uzi.png" id="1_jji8u"]
 [ext_resource type="Script" path="res://Cenas/Guns/Uzi.cs" id="2_7yqp3"]
 [ext_resource type="PackedScene" uid="uid://b32vj1rehlwim" path="res://Cenas/Bullets/UziBullet.tscn" id="3_c2wj5"]
-[ext_resource type="Texture2D" uid="uid://6oxitpxbkulx" path="res://Sprites/armas/Uzi Item.png" id="4_yygvg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7kdh4"]
 atlas = ExtResource("1_jji8u")
@@ -35,12 +34,18 @@ animation = &"atira"
 frame_progress = 1.0
 flip_h = true
 script = ExtResource("2_7yqp3")
+Durantion = 0.7
 DefautBullet = ExtResource("3_c2wj5")
+damage = 0.5
+speed = 1500.0
+Durantion = 0.7
+knockback = 20.0
 Cooldown = 0.133
+inacurace = 0.3
 auto = true
-itemTexture = ExtResource("4_yygvg")
 Nome = "Uzi"
 "Descrição" = "dispara rapidamente balas de 0.5 de dano"
+cost = 1
 
 [node name="BP" type="Node2D" parent="."]
 position = Vector2(-11.4286, -2.85714)

@@ -24,14 +24,18 @@ animation = &"atira"
 flip_h = true
 script = ExtResource("2_71x0n")
 DefautBullet = ExtResource("3_fqcaa")
+damage = 0.3
+speed = 1200.0
+Durantion = 1.0
+knockback = 20.0
 Cooldown = 0.2
 auto = true
-itemTexture = ExtResource("1_3v8t4")
 Nome = "magic wand"
 "Descrição" = "Atira rapidamente balas magicas teleguiadas que dão 0.3 de dano"
+cost = 1
 
 [node name="BP" type="Node2D" parent="."]
-position = Vector2(-5.71429, -2.85714)
+position = Vector2(-7.14286, -1.42857)
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.5

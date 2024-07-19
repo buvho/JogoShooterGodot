@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://irkfho8nguip"]
+
+[ext_resource type="Texture2D" uid="uid://pjbr28daq5yb" path="res://Sprites/etc/light.png" id="1_edcq8"]
+[ext_resource type="Texture2D" uid="uid://dby0pw7swwyen" path="res://Sprites/Props/torch.png" id="1_ia5ig"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gygxi"]
+atlas = ExtResource("1_ia5ig")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_am3ai"]
+atlas = ExtResource("1_ia5ig")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uyga"]
+atlas = ExtResource("1_ia5ig")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ceqyd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gygxi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am3ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uyga")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_am3ai")
+}],
+"loop": true,
+"name": &"frente",
+"speed": 5.0
+}]
+
+[node name="tocha" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_ceqyd")
+animation = &"frente"
+autoplay = "frente"
+frame_progress = 0.232867
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(0.00468254, -0.0646973)
+scale = Vector2(1.2, 1.2)
+color = Color(0.666667, 0.258824, 0.0117647, 1)
+shadow_enabled = true
+shadow_filter = 2
+shadow_filter_smooth = 2.0
+texture = ExtResource("1_edcq8")

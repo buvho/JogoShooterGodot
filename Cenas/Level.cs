@@ -55,7 +55,7 @@ public partial class Level: Node2D
             pai = salas[PaiNumero];
             } while (pai.Entradas.Count == 0);
             visinhos.Clear();
-
+            if(salasQ % 7 != 0) {
             switch (new Random().Next(1,6))
             {
                 case 1: 
@@ -92,7 +92,13 @@ public partial class Level: Node2D
 
                 
             }
-            
+            } else 
+            {
+            LevelSC = GD.Load<PackedScene>("res://Levels/loja.tscn");
+            visinhos.Add(new(1, 0));
+            visinhos.Add(new(-1, 0));
+            visinhos.Add(new(0, -1));
+           }
             Node2D level = (Node2D)LevelSC.Instantiate();
             Criar(pai,level);
 

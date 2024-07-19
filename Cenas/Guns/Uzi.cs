@@ -7,6 +7,6 @@ public partial class Uzi : Gun
     public override void berravior(PackedScene bulletsc)
     {
         Starter(Cooldown);
-        ShootBullet(bulletsc,1.0f,0.3);
+        ShootBullet(bulletsc);
     }
 }

@@ -1,13 +1,19 @@
-[gd_scene load_steps=25 format=3 uid="uid://dfeelp3yico72"]
+[gd_scene load_steps=30 format=3 uid="uid://dfeelp3yico72"]
 
-[ext_resource type="Script" path="res://Cenas/Caracters/Player.cs" id="1_nymh7"]
+[ext_resource type="Script" path="res://Cenas/Player.cs" id="1_nymh7"]
 [ext_resource type="Texture2D" uid="uid://c3xcecmgewe3t" path="res://Sprites/personagens/player/idle.png" id="2_pegpk"]
+[ext_resource type="Shader" path="res://Cenas/Caracters/Flash.gdshader" id="3_21mes"]
 [ext_resource type="Texture2D" uid="uid://c6m1hvge53hua" path="res://Sprites/personagens/player/walk.png" id="3_x56up"]
 [ext_resource type="Texture2D" uid="uid://bk7gpl38txn7x" path="res://Sprites/etc/sombra.png" id="4_61mpd"]
 [ext_resource type="PackedScene" uid="uid://bq58tcpxqb1vh" path="res://Components/HealthComponent.tscn" id="4_drut3"]
 [ext_resource type="PackedScene" uid="uid://dxmlg468xltu0" path="res://Cenas/UI/ArmasUI.tscn" id="5_07hvq"]
 [ext_resource type="PackedScene" uid="uid://dgohjaoqilonb" path="res://Cenas/UI/CoinUI.tscn" id="5_ek0en"]
 [ext_resource type="PackedScene" uid="uid://bd13qmk30gbkf" path="res://Cenas/UI/VidaUI.tscn" id="5_rfm80"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_skdjb"]
+resource_local_to_scene = true
+shader = ExtResource("3_21mes")
+shader_parameter/hit = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ugi8m"]
 atlas = ExtResource("2_pegpk")
@@ -124,7 +130,46 @@ animations = [{
 radius = 5.44633
 height = 20.3025
 
+[sub_resource type="Animation" id="Animation_mfy0e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_btyu2"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:material:shader_parameter/hit")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r80s5"]
+_data = {
+"RESET": SubResource("Animation_mfy0e"),
+"flash": SubResource("Animation_btyu2")
+}
+
 [node name="Player" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 scale = Vector2(1.75, 1.75)
 collision_mask = 61
 script = ExtResource("1_nymh7")
@@ -137,6 +182,7 @@ texture = ExtResource("4_61mpd")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_skdjb")
 position = Vector2(0.20077, -0.98533)
 scale = Vector2(0.8, 0.8)
 sprite_frames = SubResource("SpriteFrames_hqcv7")
@@ -148,6 +194,7 @@ flip_h = true
 position = Vector2(-2.58254, 2.89095)
 
 [node name="Collision" type="CollisionShape2D" parent="."]
+z_index = 1
 position = Vector2(3.55271e-15, -1.14286)
 shape = SubResource("CapsuleShape2D_4ivtw")
 
@@ -170,6 +217,11 @@ visible = false
 
 [node name="inventario" type="Node2D" parent="."]
 visible = false
+
+[node name="Flash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r80s5")
+}
 
 [connection signal="ArmaUI" from="." to="ArmaUI" method="OnArmaUI"]
 [connection signal="VidaUI" from="." to="VidaUI" method="OnVidaUI"]

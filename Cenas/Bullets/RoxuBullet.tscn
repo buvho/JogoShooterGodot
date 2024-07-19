@@ -4,27 +4,25 @@
 [ext_resource type="Texture2D" uid="uid://cfiata6jkq6ao" path="res://Sprites/balas/BalaRoxu.png" id="2_1h4cu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1lb5"]
-radius = 17.1429
-height = 45.7143
+radius = 3.42857
+height = 9.14286
 
 [node name="RoxuBullet" type="Area2D"]
-scale = Vector2(1.75, 1.75)
+modulate = Color(1.5, 1, 1.5, 1)
+scale = Vector2(5, 5)
 collision_layer = 8
-collision_mask = 27
+collision_mask = 17
 script = ExtResource("1_64snh")
-speed = 800
-knock = 0.0
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 position = Vector2(0, 0.857142)
-scale = Vector2(6, 5.89286)
 texture = ExtResource("2_1h4cu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.14286, 0.571429)
+position = Vector2(2.55795e-13, 0.916085)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o1lb5")
 

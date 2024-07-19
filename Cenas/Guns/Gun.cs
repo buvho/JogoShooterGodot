@@ -8,21 +8,36 @@ public partial class Gun : AnimatedSprite2D
     public bool ready = true;
     [Export]
     PackedScene DefautBullet;
+
+    [Export]
+    public double damage;
+
+    [Export]
+    public float speed;
+
+    [Export]
+    public float Durantion;
+
+    [Export]
+
+    public float knockback;
     
     [Export]
     public float Cooldown;
 
     [Export]
-    public bool auto = false;
+    public double inacurace;
 
     [Export]
-    public Texture2D itemTexture;
+    public bool auto = false;
 
     [ExportGroup("iteminfo")]
     [Export]
     public string Nome;
     [Export]
     public string Descrição;
+    [Export]
+    public int cost;
     
     public Node2D BP;
     public virtual void berravior(PackedScene bulletsc)
@@ -57,18 +72,21 @@ public partial class Gun : AnimatedSprite2D
         GetNode<Timer>("Timer").Start(down);
         ready = false;
     }
-     public void ShootBullet(PackedScene bulletsc,float Durantion = 5,double inacurace = 0, float angle = 0)
+    public void ShootBullet(PackedScene bulletsc, float angle = 0,float inaX = 0)
     {
         Bullet bullet = (Bullet)bulletsc.Instantiate();
         bullet.Position = BP.GlobalPosition;
-        bullet.Rotation = BP.GlobalRotation + (float)GD.RandRange(-inacurace,inacurace) + angle ;
-        bullet.Durantion = Durantion;
+        bullet.Rotation = BP.GlobalRotation + (float)GD.RandRange(-inacurace - inaX,inacurace + inaX) + angle ;
+        bullet.Durantion = bullet.Durantion == 0 ? Durantion : bullet.Durantion;
+        bullet.damage = bullet.damage == 0 ? damage : bullet.damage;
+        bullet.knock = bullet.knock == 0 ? knockback : bullet.knock;
+        bullet.speed = bullet.speed  == 0 ? speed : bullet.speed;
         bullet.damage += damP;
         bullet.damage *= damX;
         GetTree().Root.AddChild(bullet);
     }
 
-    public void RayShoot(int damage)
+    public void RayShoot()
     {
         var ray = GetNode<RayCast2D>("RayCast");
         if (ray.GetCollider() is CharacterBody2D)
@@ -79,7 +97,7 @@ public partial class Gun : AnimatedSprite2D
         if (ray.GetCollider() is Enemy)
         {
             var vitima = ray.GetCollider() as Enemy;
-            vitima.KnockBack(ray.GlobalPosition,100000F);
+            vitima.KnockBack(ray.GlobalPosition,knockback * 1000);
         }
 
     }

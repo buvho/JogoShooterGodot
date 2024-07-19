@@ -7,8 +7,8 @@ public partial class Shotgun : Gun
        public override void berravior(PackedScene bulletsc)
     {
         Starter(Cooldown);
-        ShootBullet(bulletsc,D,0.1f);
-        ShootBullet(bulletsc,D,0.1f,0.3f);
-        ShootBullet(bulletsc,D,0.1f,-0.3f);
+        ShootBullet(bulletsc);
+        ShootBullet(bulletsc,0.3f);
+        ShootBullet(bulletsc,-0.3f);
     }
 }

@@ -7,13 +7,11 @@
 radius = 2.22222
 
 [node name="UziBullet" type="Area2D"]
-scale = Vector2(1.5, 1.5)
+modulate = Color(25, 1, 1, 1)
+scale = Vector2(1.4, 1.4)
 collision_layer = 2
 collision_mask = 20
 script = ExtResource("1_dtqhj")
-speed = 1500.0
-damage = 0.5
-knock = 50.0
 
 [node name="Timer" type="Timer" parent="."]
 

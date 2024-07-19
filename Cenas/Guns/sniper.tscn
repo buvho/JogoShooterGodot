@@ -1,9 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://c0t75vi7vi6ag"]
+[gd_scene load_steps=10 format=3 uid="uid://c0t75vi7vi6ag"]
 
 [ext_resource type="Texture2D" uid="uid://hdo485g2muac" path="res://Sprites/armas/Sprite-0002.png" id="1_658uq"]
 [ext_resource type="Script" path="res://Cenas/Guns/Sniper.cs" id="2_cmqfs"]
 [ext_resource type="PackedScene" uid="uid://b2sgmw0t16t8w" path="res://Cenas/Bullets/fumaça.tscn" id="3_1p2m4"]
-[ext_resource type="Texture2D" uid="uid://b88qfhntd7ksu" path="res://Sprites/armas/Sniper.png" id="4_322kd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4elqa"]
 atlas = ExtResource("1_658uq")
@@ -44,7 +43,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_j4lf0")
 }],
 "loop": false,
-"name": &"default",
+"name": &"atira",
 "speed": 6.0
 }]
 
@@ -53,14 +52,17 @@ texture_filter = 1
 position = Vector2(3, 2)
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_amqoo")
+animation = &"atira"
 flip_h = true
 script = ExtResource("2_cmqfs")
 "fumaça" = ExtResource("3_1p2m4")
 DefautBullet = ExtResource("3_1p2m4")
+damage = 3.0
+knockback = 100.0
 Cooldown = 1.2
-itemTexture = ExtResource("4_322kd")
 Nome = "AWP"
 "Descrição" = "dispara uma rapida bala que dá 3 de dano"
+cost = 3
 
 [node name="BP" type="Node2D" parent="."]
 

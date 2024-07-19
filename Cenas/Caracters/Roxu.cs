@@ -1,20 +1,11 @@
 
 
-public partial class Roxu : Enemy
+public partial class Roxu : ShootingEnemy
 {
-    bool alive = true;
-    public override void _Process(double delta)
+    public override void Tick(double delta)
     {
-        if (alive)
-        {
-            Erotation();
-            MoveToPlayer();
-            TryShoot();
-            Move(delta);
-        }
-    }
-    public void Dead()
-    {
-        alive = false;
+    MoveToPlayer();
+    TryShoot();
+    Move(delta);
     }
 }

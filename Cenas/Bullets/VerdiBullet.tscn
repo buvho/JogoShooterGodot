@@ -26,27 +26,29 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o1lb5"]
-radius = 18.8571
-height = 62.5714
+radius = 4.0
+height = 10.2857
 
 [node name="VerdiBullet" type="Area2D"]
-scale = Vector2(1.75, 1.75)
+modulate = Color(1, 25, 1, 1)
+scale = Vector2(5, 5)
 collision_layer = 8
-collision_mask = 27
+collision_mask = 17
 script = ExtResource("1_leo1g")
-speed = 800
-knock = 0.0
+speed = 700.0
+damage = 1.0
+knock = 1.0
+Durantion = 1000.0
 
 [node name="Timer" type="Timer" parent="."]
 
 [node name="sprite" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_58nb1")
 frame_progress = 0.392721
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.38419e-07, -2.85714)
+position = Vector2(-6.39488e-13, -0.571429)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_o1lb5")
 

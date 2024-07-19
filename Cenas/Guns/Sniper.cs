@@ -8,7 +8,7 @@ public partial class Sniper : Gun
     {
         var raycast = GetNode<RayCast2D>("RayCast");
         Starter(Cooldown);
-        RayShoot(3);
+        RayShoot();
         var FumasCalcs = raycast.GetCollisionPoint() - raycast.GlobalPosition;
         Sprite2D fumas = (Sprite2D)fumaça.Instantiate();
         fumas.Rotation = GlobalRotation;
